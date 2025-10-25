@@ -1,0 +1,2830 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e51b878286a70588d8ffc618bc21968a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_e51b878286a70588d8ffc618bc21968a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_e51b878286a70588d8ffc618bc21968a = L.map(
+                "map_e51b878286a70588d8ffc618bc21968a",
+                {
+                    center: [25.04, 121.54],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_947ae843be6ea56c9d2ba5a843eb0773 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_947ae843be6ea56c9d2ba5a843eb0773.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+    var color_map_4feeb06537b8764a111c82153d65067b = {};
+
+    
+    color_map_4feeb06537b8764a111c82153d65067b.color = d3.scale.threshold()
+              .domain([0.0, 0.002004008016032064, 0.004008016032064128, 0.006012024048096192, 0.008016032064128256, 0.01002004008016032, 0.012024048096192385, 0.014028056112224449, 0.01603206412825651, 0.018036072144288578, 0.02004008016032064, 0.022044088176352707, 0.02404809619238477, 0.026052104208416832, 0.028056112224448898, 0.03006012024048096, 0.03206412825651302, 0.03406813627254509, 0.036072144288577156, 0.03807615230460922, 0.04008016032064128, 0.04208416833667335, 0.04408817635270541, 0.04609218436873747, 0.04809619238476954, 0.050100200400801605, 0.052104208416833664, 0.05410821643286573, 0.056112224448897796, 0.05811623246492986, 0.06012024048096192, 0.06212424849699399, 0.06412825651302605, 0.06613226452905811, 0.06813627254509018, 0.07014028056112225, 0.07214428857715431, 0.07414829659318638, 0.07615230460921844, 0.0781563126252505, 0.08016032064128256, 0.08216432865731463, 0.0841683366733467, 0.08617234468937876, 0.08817635270541083, 0.09018036072144289, 0.09218436873747494, 0.09418837675350701, 0.09619238476953908, 0.09819639278557114, 0.10020040080160321, 0.10220440881763528, 0.10420841683366733, 0.1062124248496994, 0.10821643286573146, 0.11022044088176353, 0.11222444889779559, 0.11422845691382766, 0.11623246492985972, 0.11823647294589178, 0.12024048096192384, 0.12224448897795591, 0.12424849699398798, 0.12625250501002003, 0.1282565130260521, 0.13026052104208416, 0.13226452905811623, 0.1342685370741483, 0.13627254509018036, 0.13827655310621242, 0.1402805611222445, 0.14228456913827656, 0.14428857715430862, 0.1462925851703407, 0.14829659318637275, 0.15030060120240482, 0.1523046092184369, 0.15430861723446893, 0.156312625250501, 0.15831663326653306, 0.16032064128256512, 0.1623246492985972, 0.16432865731462926, 0.16633266533066132, 0.1683366733466934, 0.17034068136272545, 0.17234468937875752, 0.1743486973947896, 0.17635270541082165, 0.17835671342685372, 0.18036072144288579, 0.18236472945891782, 0.1843687374749499, 0.18637274549098196, 0.18837675350701402, 0.1903807615230461, 0.19238476953907815, 0.19438877755511022, 0.1963927855711423, 0.19839679358717435, 0.20040080160320642, 0.20240480961923848, 0.20440881763527055, 0.20641282565130262, 0.20841683366733466, 0.21042084168336672, 0.2124248496993988, 0.21442885771543085, 0.21643286573146292, 0.218436873747495, 0.22044088176352705, 0.22244488977955912, 0.22444889779559118, 0.22645290581162325, 0.22845691382765532, 0.23046092184368738, 0.23246492985971945, 0.23446893787575152, 0.23647294589178355, 0.23847695390781562, 0.24048096192384769, 0.24248496993987975, 0.24448897795591182, 0.24649298597194388, 0.24849699398797595, 0.250501002004008, 0.25250501002004005, 0.2545090180360721, 0.2565130260521042, 0.25851703406813625, 0.2605210420841683, 0.2625250501002004, 0.26452905811623245, 0.2665330661322645, 0.2685370741482966, 0.27054108216432865, 0.2725450901803607, 0.2745490981963928, 0.27655310621242485, 0.2785571142284569, 0.280561122244489, 0.28256513026052105, 0.2845691382765531, 0.2865731462925852, 0.28857715430861725, 0.2905811623246493, 0.2925851703406814, 0.29458917835671344, 0.2965931863727455, 0.2985971943887776, 0.30060120240480964, 0.3026052104208417, 0.3046092184368738, 0.3066132264529058, 0.30861723446893785, 0.3106212424849699, 0.312625250501002, 0.31462925851703405, 0.3166332665330661, 0.3186372745490982, 0.32064128256513025, 0.3226452905811623, 0.3246492985971944, 0.32665330661322645, 0.3286573146292585, 0.3306613226452906, 0.33266533066132264, 0.3346693386773547, 0.3366733466933868, 0.33867735470941884, 0.3406813627254509, 0.342685370741483, 0.34468937875751504, 0.3466933867735471, 0.3486973947895792, 0.35070140280561124, 0.3527054108216433, 0.35470941883767537, 0.35671342685370744, 0.3587174348697395, 0.36072144288577157, 0.3627254509018036, 0.36472945891783565, 0.3667334669338677, 0.3687374749498998, 0.37074148296593185, 0.3727454909819639, 0.374749498997996, 0.37675350701402804, 0.3787575150300601, 0.3807615230460922, 0.38276553106212424, 0.3847695390781563, 0.3867735470941884, 0.38877755511022044, 0.3907815631262525, 0.3927855711422846, 0.39478957915831664, 0.3967935871743487, 0.39879759519038077, 0.40080160320641284, 0.4028056112224449, 0.40480961923847697, 0.40681362725450904, 0.4088176352705411, 0.41082164328657317, 0.41282565130260523, 0.4148296593186373, 0.4168336673346693, 0.4188376753507014, 0.42084168336673344, 0.4228456913827655, 0.4248496993987976, 0.42685370741482964, 0.4288577154308617, 0.4308617234468938, 0.43286573146292584, 0.4348697394789579, 0.43687374749499, 0.43887775551102204, 0.4408817635270541, 0.44288577154308617, 0.44488977955911824, 0.4468937875751503, 0.44889779559118237, 0.45090180360721444, 0.4529058116232465, 0.45490981963927857, 0.45691382765531063, 0.4589178356713427, 0.46092184368737477, 0.46292585170340683, 0.4649298597194389, 0.46693386773547096, 0.46893787575150303, 0.4709418837675351, 0.4729458917835671, 0.4749498997995992, 0.47695390781563124, 0.4789579158316633, 0.48096192384769537, 0.48296593186372744, 0.4849699398797595, 0.48697394789579157, 0.48897795591182364, 0.4909819639278557, 0.49298597194388777, 0.49498997995991983, 0.4969939879759519, 0.49899799599198397, 0.501002004008016, 0.503006012024048, 0.5050100200400801, 0.5070140280561122, 0.5090180360721442, 0.5110220440881763, 0.5130260521042084, 0.5150300601202404, 0.5170340681362725, 0.5190380761523046, 0.5210420841683366, 0.5230460921843687, 0.5250501002004008, 0.5270541082164328, 0.5290581162324649, 0.531062124248497, 0.533066132264529, 0.5350701402805611, 0.5370741482965932, 0.5390781563126252, 0.5410821643286573, 0.5430861723446894, 0.5450901803607214, 0.5470941883767535, 0.5490981963927856, 0.5511022044088176, 0.5531062124248497, 0.5551102204408818, 0.5571142284569138, 0.5591182364729459, 0.561122244488978, 0.56312625250501, 0.5651302605210421, 0.5671342685370742, 0.5691382765531062, 0.5711422845691383, 0.5731462925851704, 0.5751503006012024, 0.5771543086172345, 0.5791583166332666, 0.5811623246492986, 0.5831663326653307, 0.5851703406813628, 0.5871743486973948, 0.5891783567134269, 0.591182364729459, 0.593186372745491, 0.5951903807615231, 0.5971943887775552, 0.5991983967935872, 0.6012024048096193, 0.6032064128256514, 0.6052104208416834, 0.6072144288577155, 0.6092184368737475, 0.6112224448897795, 0.6132264529058116, 0.6152304609218436, 0.6172344689378757, 0.6192384769539078, 0.6212424849699398, 0.6232464929859719, 0.625250501002004, 0.627254509018036, 0.6292585170340681, 0.6312625250501002, 0.6332665330661322, 0.6352705410821643, 0.6372745490981964, 0.6392785571142284, 0.6412825651302605, 0.6432865731462926, 0.6452905811623246, 0.6472945891783567, 0.6492985971943888, 0.6513026052104208, 0.6533066132264529, 0.655310621242485, 0.657314629258517, 0.6593186372745491, 0.6613226452905812, 0.6633266533066132, 0.6653306613226453, 0.6673346693386774, 0.6693386773547094, 0.6713426853707415, 0.6733466933867736, 0.6753507014028056, 0.6773547094188377, 0.6793587174348698, 0.6813627254509018, 0.6833667334669339, 0.685370741482966, 0.687374749498998, 0.6893787575150301, 0.6913827655310621, 0.6933867735470942, 0.6953907815631263, 0.6973947895791583, 0.6993987975951904, 0.7014028056112225, 0.7034068136272545, 0.7054108216432866, 0.7074148296593187, 0.7094188376753507, 0.7114228456913828, 0.7134268537074149, 0.7154308617234469, 0.717434869739479, 0.7194388777555111, 0.7214428857715431, 0.7234468937875751, 0.7254509018036072, 0.7274549098196392, 0.7294589178356713, 0.7314629258517034, 0.7334669338677354, 0.7354709418837675, 0.7374749498997996, 0.7394789579158316, 0.7414829659318637, 0.7434869739478958, 0.7454909819639278, 0.7474949899799599, 0.749498997995992, 0.751503006012024, 0.7535070140280561, 0.7555110220440882, 0.7575150300601202, 0.7595190380761523, 0.7615230460921844, 0.7635270541082164, 0.7655310621242485, 0.7675350701402806, 0.7695390781563126, 0.7715430861723447, 0.7735470941883767, 0.7755511022044088, 0.7775551102204409, 0.779559118236473, 0.781563126252505, 0.7835671342685371, 0.7855711422845691, 0.7875751503006012, 0.7895791583166333, 0.7915831663326653, 0.7935871743486974, 0.7955911823647295, 0.7975951903807615, 0.7995991983967936, 0.8016032064128257, 0.8036072144288577, 0.8056112224448898, 0.8076152304609219, 0.8096192384769539, 0.811623246492986, 0.8136272545090181, 0.8156312625250501, 0.8176352705410822, 0.8196392785571143, 0.8216432865731463, 0.8236472945891784, 0.8256513026052105, 0.8276553106212425, 0.8296593186372746, 0.8316633266533067, 0.8336673346693386, 0.8356713426853707, 0.8376753507014028, 0.8396793587174348, 0.8416833667334669, 0.843687374749499, 0.845691382765531, 0.8476953907815631, 0.8496993987975952, 0.8517034068136272, 0.8537074148296593, 0.8557114228456913, 0.8577154308617234, 0.8597194388777555, 0.8617234468937875, 0.8637274549098196, 0.8657314629258517, 0.8677354709418837, 0.8697394789579158, 0.8717434869739479, 0.87374749498998, 0.875751503006012, 0.8777555110220441, 0.8797595190380761, 0.8817635270541082, 0.8837675350701403, 0.8857715430861723, 0.8877755511022044, 0.8897795591182365, 0.8917835671342685, 0.8937875751503006, 0.8957915831663327, 0.8977955911823647, 0.8997995991983968, 0.9018036072144289, 0.9038076152304609, 0.905811623246493, 0.9078156312625251, 0.9098196392785571, 0.9118236472945892, 0.9138276553106213, 0.9158316633266533, 0.9178356713426854, 0.9198396793587175, 0.9218436873747495, 0.9238476953907816, 0.9258517034068137, 0.9278557114228457, 0.9298597194388778, 0.9318637274549099, 0.9338677354709419, 0.935871743486974, 0.9378757515030061, 0.9398797595190381, 0.9418837675350702, 0.9438877755511023, 0.9458917835671342, 0.9478957915831663, 0.9498997995991983, 0.9519038076152304, 0.9539078156312625, 0.9559118236472945, 0.9579158316633266, 0.9599198396793587, 0.9619238476953907, 0.9639278557114228, 0.9659318637274549, 0.9679358717434869, 0.969939879759519, 0.9719438877755511, 0.9739478957915831, 0.9759519038076152, 0.9779559118236473, 0.9799599198396793, 0.9819639278557114, 0.9839679358717435, 0.9859719438877755, 0.9879759519038076, 0.9899799599198397, 0.9919839679358717, 0.9939879759519038, 0.9959919839679359, 0.9979959919839679, 1.0])
+              .range(['#ffffccff', '#ffffccff', '#ffffcbff', '#ffffcaff', '#fffec9ff', '#fffec9ff', '#fffec8ff', '#fffdc7ff', '#fffdc7ff', '#fffdc6ff', '#fffdc5ff', '#fffcc5ff', '#fffcc4ff', '#fffcc3ff', '#fffbc2ff', '#fffbc2ff', '#fffbc1ff', '#fffbc0ff', '#fffac0ff', '#fffabfff', '#fffabeff', '#fff9bdff', '#fff9bdff', '#fff9bcff', '#fff9bbff', '#fff8bbff', '#fff8baff', '#fff8b9ff', '#fff7b8ff', '#fff7b8ff', '#fff7b7ff', '#fff7b6ff', '#fff6b6ff', '#fff6b5ff', '#fff6b4ff', '#fff5b4ff', '#fff5b3ff', '#fff5b2ff', '#fff4b1ff', '#fff4b1ff', '#fff4b0ff', '#fff4afff', '#fff3afff', '#fff3aeff', '#fff3adff', '#fff2acff', '#fff2acff', '#fff2abff', '#fff2aaff', '#fff1aaff', '#fff1a9ff', '#fff1a8ff', '#fff0a7ff', '#fff0a7ff', '#fff0a6ff', '#fff0a5ff', '#ffefa5ff', '#ffefa4ff', '#ffefa3ff', '#ffeea3ff', '#ffeea2ff', '#ffeea1ff', '#ffeea0ff', '#ffeda0ff', '#ffed9fff', '#ffed9eff', '#ffec9eff', '#ffec9dff', '#ffec9cff', '#ffeb9cff', '#ffeb9bff', '#ffeb9aff', '#ffea9aff', '#ffea99ff', '#ffea98ff', '#ffe998ff', '#ffe997ff', '#ffe996ff', '#ffe896ff', '#ffe895ff', '#ffe894ff', '#ffe794ff', '#ffe793ff', '#ffe792ff', '#ffe692ff', '#ffe691ff', '#ffe690ff', '#ffe68fff', '#ffe58fff', '#ffe58eff', '#ffe58dff', '#ffe48dff', '#ffe48cff', '#ffe48bff', '#ffe38bff', '#ffe38aff', '#ffe389ff', '#ffe289ff', '#ffe288ff', '#ffe287ff', '#ffe187ff', '#ffe186ff', '#ffe185ff', '#ffe085ff', '#ffe084ff', '#ffe083ff', '#ffdf83ff', '#ffdf82ff', '#ffdf81ff', '#ffde81ff', '#ffde80ff', '#ffde7fff', '#ffdd7fff', '#ffdd7eff', '#ffdd7dff', '#ffdc7dff', '#ffdc7cff', '#ffdc7bff', '#ffdc7bff', '#ffdb7aff', '#ffdb79ff', '#ffdb78ff', '#ffda78ff', '#ffda77ff', '#ffda76ff', '#fed976ff', '#fed975ff', '#fed874ff', '#fed774ff', '#fed773ff', '#fed672ff', '#fed572ff', '#fed571ff', '#fed470ff', '#fed470ff', '#fed36fff', '#fed26eff', '#fed26eff', '#fed16dff', '#fed06cff', '#fed06cff', '#fecf6bff', '#fecf6aff', '#fece6aff', '#fecd69ff', '#fecd68ff', '#fecc68ff', '#fecb67ff', '#fecb66ff', '#feca66ff', '#feca65ff', '#fec964ff', '#fec864ff', '#fec863ff', '#fec762ff', '#fec662ff', '#fec661ff', '#fec560ff', '#fec45fff', '#fec45fff', '#fec35eff', '#fec35dff', '#fec25dff', '#fec15cff', '#fec15bff', '#fec05bff', '#febf5aff', '#febf59ff', '#febe59ff', '#febe58ff', '#febd57ff', '#febc57ff', '#febc56ff', '#febb55ff', '#feba55ff', '#feba54ff', '#feb953ff', '#feb953ff', '#feb852ff', '#feb751ff', '#feb751ff', '#feb650ff', '#feb54fff', '#feb54fff', '#feb44eff', '#feb44dff', '#feb34dff', '#feb24cff', '#feb24cff', '#feb14bff', '#feb04bff', '#feb04bff', '#feaf4bff', '#feaf4aff', '#feae4aff', '#feae4aff', '#fead4aff', '#feac49ff', '#feac49ff', '#feab49ff', '#feab48ff', '#feaa48ff', '#fea948ff', '#fea948ff', '#fea847ff', '#fea847ff', '#fea747ff', '#fea647ff', '#fea646ff', '#fea546ff', '#fea546ff', '#fea446ff', '#fea345ff', '#fea345ff', '#fea245ff', '#fea245ff', '#fea144ff', '#fea044ff', '#fea044ff', '#fe9f44ff', '#fe9f43ff', '#fe9e43ff', '#fe9d43ff', '#fe9d43ff', '#fe9c42ff', '#fe9c42ff', '#fe9b42ff', '#fe9a42ff', '#fe9a41ff', '#fe9941ff', '#fe9941ff', '#fe9840ff', '#fe9740ff', '#fe9740ff', '#fe9640ff', '#fe963fff', '#fe953fff', '#fe943fff', '#fe943fff', '#fe933eff', '#fe933eff', '#fe923eff', '#fe923eff', '#fe913dff', '#fe903dff', '#fe903dff', '#fe8f3dff', '#fe8f3cff', '#fe8e3cff', '#fe8d3cff', '#fd8d3cff', '#fd8c3bff', '#fd8b3bff', '#fd8a3bff', '#fd883aff', '#fd873aff', '#fd863aff', '#fd853aff', '#fd8439ff', '#fd8339ff', '#fd8239ff', '#fd8138ff', '#fd8038ff', '#fd7f38ff', '#fd7e38ff', '#fd7d37ff', '#fd7c37ff', '#fd7b37ff', '#fd7a36ff', '#fd7936ff', '#fd7836ff', '#fd7736ff', '#fd7635ff', '#fd7535ff', '#fd7435ff', '#fd7334ff', '#fd7234ff', '#fd7134ff', '#fd7033ff', '#fd6f33ff', '#fd6e33ff', '#fd6d33ff', '#fd6c32ff', '#fd6b32ff', '#fd6a32ff', '#fd6931ff', '#fd6831ff', '#fd6731ff', '#fd6631ff', '#fd6530ff', '#fd6430ff', '#fd6330ff', '#fd622fff', '#fd612fff', '#fd602fff', '#fd5f2fff', '#fd5e2eff', '#fd5d2eff', '#fd5c2eff', '#fd5b2dff', '#fd5a2dff', '#fd592dff', '#fd582dff', '#fd572cff', '#fd562cff', '#fd552cff', '#fd542bff', '#fd532bff', '#fd522bff', '#fd512aff', '#fd502aff', '#fd4f2aff', '#fc4e2aff', '#fc4d29ff', '#fc4c29ff', '#fb4b29ff', '#fb4a29ff', '#fa4a29ff', '#fa4928ff', '#fa4828ff', '#f94728ff', '#f94628ff', '#f84527ff', '#f84427ff', '#f84427ff', '#f74327ff', '#f74226ff', '#f64126ff', '#f64026ff', '#f63f26ff', '#f53f26ff', '#f53e25ff', '#f43d25ff', '#f43c25ff', '#f43b25ff', '#f33a24ff', '#f33a24ff', '#f23924ff', '#f23824ff', '#f23724ff', '#f13623ff', '#f13523ff', '#f03523ff', '#f03423ff', '#f03322ff', '#ef3222ff', '#ef3122ff', '#ee3022ff', '#ee3022ff', '#ee2f21ff', '#ed2e21ff', '#ed2d21ff', '#ec2c21ff', '#ec2b20ff', '#ec2b20ff', '#eb2a20ff', '#eb2920ff', '#ea281fff', '#ea271fff', '#ea261fff', '#e9261fff', '#e9251fff', '#e8241eff', '#e8231eff', '#e8221eff', '#e7211eff', '#e7211dff', '#e6201dff', '#e61f1dff', '#e61e1dff', '#e51d1dff', '#e51c1cff', '#e41b1cff', '#e41b1cff', '#e31a1cff', '#e3191cff', '#e2191cff', '#e2181cff', '#e1181cff', '#e0181cff', '#e0171dff', '#df171dff', '#df161dff', '#de161dff', '#dd161dff', '#dd151dff', '#dc151eff', '#dc141eff', '#db141eff', '#da131eff', '#da131eff', '#d9131eff', '#d9121eff', '#d8121fff', '#d7111fff', '#d7111fff', '#d6111fff', '#d5101fff', '#d5101fff', '#d40f20ff', '#d40f20ff', '#d30e20ff', '#d20e20ff', '#d20e20ff', '#d10d20ff', '#d10d21ff', '#d00c21ff', '#cf0c21ff', '#cf0b21ff', '#ce0b21ff', '#ce0b21ff', '#cd0a22ff', '#cc0a22ff', '#cc0922ff', '#cb0922ff', '#ca0922ff', '#ca0822ff', '#c90822ff', '#c90723ff', '#c80723ff', '#c70623ff', '#c70623ff', '#c60623ff', '#c60523ff', '#c50524ff', '#c40424ff', '#c40424ff', '#c30424ff', '#c30324ff', '#c20324ff', '#c10225ff', '#c10225ff', '#c00125ff', '#bf0125ff', '#bf0125ff', '#be0025ff', '#be0026ff', '#bd0026ff', '#bc0026ff', '#bb0026ff', '#ba0026ff', '#b90026ff', '#b80026ff', '#b70026ff', '#b60026ff', '#b50026ff', '#b40026ff', '#b30026ff', '#b20026ff', '#b10026ff', '#b00026ff', '#af0026ff', '#ae0026ff', '#ad0026ff', '#ac0026ff', '#ab0026ff', '#aa0026ff', '#a90026ff', '#a80026ff', '#a70026ff', '#a60026ff', '#a50026ff', '#a40026ff', '#a30026ff', '#a20026ff', '#a10026ff', '#a00026ff', '#9f0026ff', '#9e0026ff', '#9d0026ff', '#9c0026ff', '#9b0026ff', '#9b0026ff', '#9a0026ff', '#990026ff', '#980026ff', '#970026ff', '#960026ff', '#950026ff', '#940026ff', '#930026ff', '#920026ff', '#910026ff', '#900026ff', '#8f0026ff', '#8e0026ff', '#8d0026ff', '#8c0026ff', '#8b0026ff', '#8a0026ff', '#890026ff', '#880026ff', '#870026ff', '#860026ff', '#850026ff', '#840026ff', '#830026ff', '#820026ff', '#810026ff', '#800026ff']);
+    
+
+    color_map_4feeb06537b8764a111c82153d65067b.x = d3.scale.linear()
+              .domain([0.0, 1.0])
+              .range([0, 450 - 50]);
+
+    color_map_4feeb06537b8764a111c82153d65067b.legend = L.control({position: 'topright'});
+    color_map_4feeb06537b8764a111c82153d65067b.legend.onAdd = function (map) {var div = L.DomUtil.create('div', 'legend'); return div};
+    color_map_4feeb06537b8764a111c82153d65067b.legend.addTo(map_e51b878286a70588d8ffc618bc21968a);
+
+    color_map_4feeb06537b8764a111c82153d65067b.xAxis = d3.svg.axis()
+        .scale(color_map_4feeb06537b8764a111c82153d65067b.x)
+        .orient("top")
+        .tickSize(1)
+        .tickValues([0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0]);
+
+    color_map_4feeb06537b8764a111c82153d65067b.svg = d3.select(".legend.leaflet-control").append("svg")
+        .attr("id", 'legend')
+        .attr("width", 450)
+        .attr("height", 40);
+
+    color_map_4feeb06537b8764a111c82153d65067b.g = color_map_4feeb06537b8764a111c82153d65067b.svg.append("g")
+        .attr("class", "key")
+        .attr("fill", "black")
+        .attr("transform", "translate(25,16)");
+
+    color_map_4feeb06537b8764a111c82153d65067b.g.selectAll("rect")
+        .data(color_map_4feeb06537b8764a111c82153d65067b.color.range().map(function(d, i) {
+          return {
+            x0: i ? color_map_4feeb06537b8764a111c82153d65067b.x(color_map_4feeb06537b8764a111c82153d65067b.color.domain()[i - 1]) : color_map_4feeb06537b8764a111c82153d65067b.x.range()[0],
+            x1: i < color_map_4feeb06537b8764a111c82153d65067b.color.domain().length ? color_map_4feeb06537b8764a111c82153d65067b.x(color_map_4feeb06537b8764a111c82153d65067b.color.domain()[i]) : color_map_4feeb06537b8764a111c82153d65067b.x.range()[1],
+            z: d
+          };
+        }))
+      .enter().append("rect")
+        .attr("height", 40 - 30)
+        .attr("x", function(d) { return d.x0; })
+        .attr("width", function(d) { return d.x1 - d.x0; })
+        .style("fill", function(d) { return d.z; });
+
+    color_map_4feeb06537b8764a111c82153d65067b.g.call(color_map_4feeb06537b8764a111c82153d65067b.xAxis).append("text")
+        .attr("class", "caption")
+        .attr("y", 21)
+        .attr("fill", "black")
+        .text("\u98a8\u96aa\u503c\uff08\u76f8\u5c0d\u5206\u6578 0\u20131\uff09");
+    
+            var feature_group_415a1d2ef79437b117a01fe6ea9393ce = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_aa095851a371330c6419b7822f80ed2f = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#800026ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800026ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_415a1d2ef79437b117a01fe6ea9393ce);
+        
+    
+        var popup_0ca8f21e29d5b5d5dde6637dbcf6529e = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_5b587b280fbc4f0a09a87b78f6595349 = $(`<div id="html_5b587b280fbc4f0a09a87b78f6595349" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>01大同區<br>             <b>風險值：</b>1.000<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_0ca8f21e29d5b5d5dde6637dbcf6529e.setContent(html_5b587b280fbc4f0a09a87b78f6595349);
+            
+        
+
+        circle_marker_aa095851a371330c6419b7822f80ed2f.bindPopup(popup_0ca8f21e29d5b5d5dde6637dbcf6529e)
+        ;
+
+        
+    
+    
+            var circle_marker_9d7eead063156007b319896aca101508 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#b80026ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b80026ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.62857142857143, "stroke": true, "weight": 3}
+            ).addTo(feature_group_415a1d2ef79437b117a01fe6ea9393ce);
+        
+    
+        var popup_50f52c6e2e3ba1559b4dc8c2e5a6170f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_22cdf208449d625002a2e578d0781f63 = $(`<div id="html_22cdf208449d625002a2e578d0781f63" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>01大同區<br>             <b>風險值：</b>0.886<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_50f52c6e2e3ba1559b4dc8c2e5a6170f.setContent(html_22cdf208449d625002a2e578d0781f63);
+            
+        
+
+        circle_marker_9d7eead063156007b319896aca101508.bindPopup(popup_50f52c6e2e3ba1559b4dc8c2e5a6170f)
+        ;
+
+        
+    
+    
+            var circle_marker_c157f3bae045cd3baadf1609a623098a = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#d6111fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d6111fff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.50943396226415, "stroke": true, "weight": 3}
+            ).addTo(feature_group_415a1d2ef79437b117a01fe6ea9393ce);
+        
+    
+        var popup_fe768c47c67f50dae300f26b9aa4eb13 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_13c722a163caf4b38aa69c3c0476ebd7 = $(`<div id="html_13c722a163caf4b38aa69c3c0476ebd7" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>01大同區<br>             <b>風險值：</b>0.792<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_fe768c47c67f50dae300f26b9aa4eb13.setContent(html_13c722a163caf4b38aa69c3c0476ebd7);
+            
+        
+
+        circle_marker_c157f3bae045cd3baadf1609a623098a.bindPopup(popup_fe768c47c67f50dae300f26b9aa4eb13)
+        ;
+
+        
+    
+    
+            var circle_marker_8a8198934de227851d1d3560533ce743 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#e8231eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e8231eff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.742857142857144, "stroke": true, "weight": 3}
+            ).addTo(feature_group_415a1d2ef79437b117a01fe6ea9393ce);
+        
+    
+        var popup_3bfb8d7d7845060a2efea40063c82189 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_c056cd212d960e62006fbd11b88ed394 = $(`<div id="html_c056cd212d960e62006fbd11b88ed394" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>01大同區<br>             <b>風險值：</b>0.729<br>             <b>時段：</b>11 時         </div>         </div>`)[0];
+                popup_3bfb8d7d7845060a2efea40063c82189.setContent(html_c056cd212d960e62006fbd11b88ed394);
+            
+        
+
+        circle_marker_8a8198934de227851d1d3560533ce743.bindPopup(popup_3bfb8d7d7845060a2efea40063c82189)
+        ;
+
+        
+    
+    
+            var circle_marker_ec1a014795a27d744253b59d74fdd9ab = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#e9261fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e9261fff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.657142857142857, "stroke": true, "weight": 3}
+            ).addTo(feature_group_415a1d2ef79437b117a01fe6ea9393ce);
+        
+    
+        var popup_0833314881eec9de45fe10183ce8a8fe = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_cbdd56f6d415735a70775b726051c654 = $(`<div id="html_cbdd56f6d415735a70775b726051c654" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>01大同區<br>             <b>風險值：</b>0.721<br>             <b>時段：</b>18 時         </div>         </div>`)[0];
+                popup_0833314881eec9de45fe10183ce8a8fe.setContent(html_cbdd56f6d415735a70775b726051c654);
+            
+        
+
+        circle_marker_ec1a014795a27d744253b59d74fdd9ab.bindPopup(popup_0833314881eec9de45fe10183ce8a8fe)
+        ;
+
+        
+    
+    
+            feature_group_415a1d2ef79437b117a01fe6ea9393ce.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_21e9326552994da1c5da4c08d328d3a7 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_33426e3c47f7930d1e46b6a9520c488b = L.circleMarker(
+                [25.039, 121.49600000000001],
+                {"bubblingMouseEvents": true, "color": "#fe9740ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9740ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.58794246967655, "stroke": true, "weight": 3}
+            ).addTo(feature_group_21e9326552994da1c5da4c08d328d3a7);
+        
+    
+        var popup_ce1fe5b07f2084c9bccdbeb6c1c09778 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_c366bea0903b906630d4b6dd55963708 = $(`<div id="html_c366bea0903b906630d4b6dd55963708" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>02萬華區<br>             <b>風險值：</b>0.466<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_ce1fe5b07f2084c9bccdbeb6c1c09778.setContent(html_c366bea0903b906630d4b6dd55963708);
+            
+        
+
+        circle_marker_33426e3c47f7930d1e46b6a9520c488b.bindPopup(popup_ce1fe5b07f2084c9bccdbeb6c1c09778)
+        ;
+
+        
+    
+    
+            var circle_marker_5a22d2e3812793f0bf2f851834a10334 = L.circleMarker(
+                [25.028000000000002, 121.495],
+                {"bubblingMouseEvents": true, "color": "#fea044ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea044ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.249279289696151, "stroke": true, "weight": 3}
+            ).addTo(feature_group_21e9326552994da1c5da4c08d328d3a7);
+        
+    
+        var popup_19ccc5bb6869dfc8a30b5ea43038279c = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0a65179aace7a8d0bc55ba35408c3091 = $(`<div id="html_0a65179aace7a8d0bc55ba35408c3091" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>02萬華區<br>             <b>風險值：</b>0.437<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_19ccc5bb6869dfc8a30b5ea43038279c.setContent(html_0a65179aace7a8d0bc55ba35408c3091);
+            
+        
+
+        circle_marker_5a22d2e3812793f0bf2f851834a10334.bindPopup(popup_19ccc5bb6869dfc8a30b5ea43038279c)
+        ;
+
+        
+    
+    
+            var circle_marker_27c057f1adb7c0212bcc3c9ee7198b5a = L.circleMarker(
+                [25.039, 121.49600000000001],
+                {"bubblingMouseEvents": true, "color": "#fea446ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea446ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.079947699705954, "stroke": true, "weight": 3}
+            ).addTo(feature_group_21e9326552994da1c5da4c08d328d3a7);
+        
+    
+        var popup_eddd9169736007e2a40266c03e932330 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_3aa4eda4ebb3da47ff39ed5404c27492 = $(`<div id="html_3aa4eda4ebb3da47ff39ed5404c27492" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>02萬華區<br>             <b>風險值：</b>0.423<br>             <b>時段：</b>7 時         </div>         </div>`)[0];
+                popup_eddd9169736007e2a40266c03e932330.setContent(html_3aa4eda4ebb3da47ff39ed5404c27492);
+            
+        
+
+        circle_marker_27c057f1adb7c0212bcc3c9ee7198b5a.bindPopup(popup_eddd9169736007e2a40266c03e932330)
+        ;
+
+        
+    
+    
+            var circle_marker_42683cc2b7a89855d562251bbd1d0ed2 = L.circleMarker(
+                [25.028000000000002, 121.495],
+                {"bubblingMouseEvents": true, "color": "#feab49ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feab49ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.772072081541957, "stroke": true, "weight": 3}
+            ).addTo(feature_group_21e9326552994da1c5da4c08d328d3a7);
+        
+    
+        var popup_80cc584d6eb8991359ffecb3f97af1a2 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_bf57bf4729e835f04d3c47e736727e69 = $(`<div id="html_bf57bf4729e835f04d3c47e736727e69" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>02萬華區<br>             <b>風險值：</b>0.398<br>             <b>時段：</b>7 時         </div>         </div>`)[0];
+                popup_80cc584d6eb8991359ffecb3f97af1a2.setContent(html_bf57bf4729e835f04d3c47e736727e69);
+            
+        
+
+        circle_marker_42683cc2b7a89855d562251bbd1d0ed2.bindPopup(popup_80cc584d6eb8991359ffecb3f97af1a2)
+        ;
+
+        
+    
+    
+            var circle_marker_bd4bbbaccda64bc77c3dab4603b15376 = L.circleMarker(
+                [25.039, 121.49600000000001],
+                {"bubblingMouseEvents": true, "color": "#feae4aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feae4aff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.650105971269296, "stroke": true, "weight": 3}
+            ).addTo(feature_group_21e9326552994da1c5da4c08d328d3a7);
+        
+    
+        var popup_93d75e95c1850dd5434771a8153136a3 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_d666a0e0d059d059c577b231897d81af = $(`<div id="html_d666a0e0d059d059c577b231897d81af" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>02萬華區<br>             <b>風險值：</b>0.388<br>             <b>時段：</b>9 時         </div>         </div>`)[0];
+                popup_93d75e95c1850dd5434771a8153136a3.setContent(html_d666a0e0d059d059c577b231897d81af);
+            
+        
+
+        circle_marker_bd4bbbaccda64bc77c3dab4603b15376.bindPopup(popup_93d75e95c1850dd5434771a8153136a3)
+        ;
+
+        
+    
+    
+            feature_group_21e9326552994da1c5da4c08d328d3a7.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_56230e7f40cee967ea7af1a0c4b94f02 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_073f0c712f4adfd26cc9ab300a29d2d4 = L.circleMarker(
+                [25.080000000000002, 121.547],
+                {"bubblingMouseEvents": true, "color": "#feb852ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feb852ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.288469756547972, "stroke": true, "weight": 3}
+            ).addTo(feature_group_56230e7f40cee967ea7af1a0c4b94f02);
+        
+    
+        var popup_3eae724763c1d88659fabd79aa308509 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_f66b895bd60386088cc36c20ed87542e = $(`<div id="html_f66b895bd60386088cc36c20ed87542e" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>03中山區<br>             <b>風險值：</b>0.357<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_3eae724763c1d88659fabd79aa308509.setContent(html_f66b895bd60386088cc36c20ed87542e);
+            
+        
+
+        circle_marker_073f0c712f4adfd26cc9ab300a29d2d4.bindPopup(popup_3eae724763c1d88659fabd79aa308509)
+        ;
+
+        
+    
+    
+            var circle_marker_28527fcc2996a5950157d3f42d261c46 = L.circleMarker(
+                [25.080000000000002, 121.547],
+                {"bubblingMouseEvents": true, "color": "#fecd68ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fecd68ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.489185070739747, "stroke": true, "weight": 3}
+            ).addTo(feature_group_56230e7f40cee967ea7af1a0c4b94f02);
+        
+    
+        var popup_0dae7ae1d09a7b747dfdfd06faaaac99 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_4fa01b784ef7e61275f4cee634ca34f4 = $(`<div id="html_4fa01b784ef7e61275f4cee634ca34f4" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>03中山區<br>             <b>風險值：</b>0.291<br>             <b>時段：</b>9 時         </div>         </div>`)[0];
+                popup_0dae7ae1d09a7b747dfdfd06faaaac99.setContent(html_4fa01b784ef7e61275f4cee634ca34f4);
+            
+        
+
+        circle_marker_28527fcc2996a5950157d3f42d261c46.bindPopup(popup_0dae7ae1d09a7b747dfdfd06faaaac99)
+        ;
+
+        
+    
+    
+            var circle_marker_771ea8f67a92c77392c0759897c816b2 = L.circleMarker(
+                [25.080000000000002, 121.547],
+                {"bubblingMouseEvents": true, "color": "#fecf6bff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fecf6bff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.396959914684953, "stroke": true, "weight": 3}
+            ).addTo(feature_group_56230e7f40cee967ea7af1a0c4b94f02);
+        
+    
+        var popup_6e311e96c6496db7c545753e21b244db = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_81bc5fae5e05ad98d9f26cc13dc18190 = $(`<div id="html_81bc5fae5e05ad98d9f26cc13dc18190" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>03中山區<br>             <b>風險值：</b>0.283<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_6e311e96c6496db7c545753e21b244db.setContent(html_81bc5fae5e05ad98d9f26cc13dc18190);
+            
+        
+
+        circle_marker_771ea8f67a92c77392c0759897c816b2.bindPopup(popup_6e311e96c6496db7c545753e21b244db)
+        ;
+
+        
+    
+    
+            var circle_marker_d094912cfbfe970a527e74237d6b0eb5 = L.circleMarker(
+                [25.080000000000002, 121.547],
+                {"bubblingMouseEvents": true, "color": "#fed571ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed571ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.18176788389043, "stroke": true, "weight": 3}
+            ).addTo(feature_group_56230e7f40cee967ea7af1a0c4b94f02);
+        
+    
+        var popup_33b91dfc0e888e91d8d7f33c429d6e57 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_d50a91b57f630cca5bdccb545ebfb114 = $(`<div id="html_d50a91b57f630cca5bdccb545ebfb114" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>03中山區<br>             <b>風險值：</b>0.265<br>             <b>時段：</b>18 時         </div>         </div>`)[0];
+                popup_33b91dfc0e888e91d8d7f33c429d6e57.setContent(html_d50a91b57f630cca5bdccb545ebfb114);
+            
+        
+
+        circle_marker_d094912cfbfe970a527e74237d6b0eb5.bindPopup(popup_33b91dfc0e888e91d8d7f33c429d6e57)
+        ;
+
+        
+    
+    
+            var circle_marker_7111479456b02fb198647535cca262c1 = L.circleMarker(
+                [25.048000000000002, 121.521],
+                {"bubblingMouseEvents": true, "color": "#fed773ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed773ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.09722815750687, "stroke": true, "weight": 3}
+            ).addTo(feature_group_56230e7f40cee967ea7af1a0c4b94f02);
+        
+    
+        var popup_1807a7d04f40c4f7a48ffd42a00039c9 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_8b02da779e51673c79a33f9fd1af186a = $(`<div id="html_8b02da779e51673c79a33f9fd1af186a" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>03中山區<br>             <b>風險值：</b>0.258<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_1807a7d04f40c4f7a48ffd42a00039c9.setContent(html_8b02da779e51673c79a33f9fd1af186a);
+            
+        
+
+        circle_marker_7111479456b02fb198647535cca262c1.bindPopup(popup_1807a7d04f40c4f7a48ffd42a00039c9)
+        ;
+
+        
+    
+    
+            feature_group_56230e7f40cee967ea7af1a0c4b94f02.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_663e39c37202c4e9b7aaa6461852b6cf = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_4470203fe91407e2e47f0e35246803ff = L.circleMarker(
+                [25.011, 121.537],
+                {"bubblingMouseEvents": true, "color": "#fed16dff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed16dff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.315510930831238, "stroke": true, "weight": 3}
+            ).addTo(feature_group_663e39c37202c4e9b7aaa6461852b6cf);
+        
+    
+        var popup_fa6e8c38435ee18fe7f2c665e975a1c1 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_8678d95feebc437e753f8eaf7e09250a = $(`<div id="html_8678d95feebc437e753f8eaf7e09250a" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>04大安區<br>             <b>風險值：</b>0.276<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_fa6e8c38435ee18fe7f2c665e975a1c1.setContent(html_8678d95feebc437e753f8eaf7e09250a);
+            
+        
+
+        circle_marker_4470203fe91407e2e47f0e35246803ff.bindPopup(popup_fa6e8c38435ee18fe7f2c665e975a1c1)
+        ;
+
+        
+    
+    
+            var circle_marker_e9e275b028415fb2b4e294e89ef03c66 = L.circleMarker(
+                [25.011, 121.537],
+                {"bubblingMouseEvents": true, "color": "#fed26eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed26eff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.296779230657048, "stroke": true, "weight": 3}
+            ).addTo(feature_group_663e39c37202c4e9b7aaa6461852b6cf);
+        
+    
+        var popup_84d86edcc994ff1fe32e267bf83c781f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_f491f7927826192b346e9ea8d5d2915f = $(`<div id="html_f491f7927826192b346e9ea8d5d2915f" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>04大安區<br>             <b>風險值：</b>0.275<br>             <b>時段：</b>18 時         </div>         </div>`)[0];
+                popup_84d86edcc994ff1fe32e267bf83c781f.setContent(html_f491f7927826192b346e9ea8d5d2915f);
+            
+        
+
+        circle_marker_e9e275b028415fb2b4e294e89ef03c66.bindPopup(popup_84d86edcc994ff1fe32e267bf83c781f)
+        ;
+
+        
+    
+    
+            var circle_marker_ce497e4a11b0366c11650da5acc0110c = L.circleMarker(
+                [25.011, 121.537],
+                {"bubblingMouseEvents": true, "color": "#fed571ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed571ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.184389029611921, "stroke": true, "weight": 3}
+            ).addTo(feature_group_663e39c37202c4e9b7aaa6461852b6cf);
+        
+    
+        var popup_e2fc7937c6b17b3b5f7e82738f869258 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_907d937655a4d8d7420052acc78e8c4a = $(`<div id="html_907d937655a4d8d7420052acc78e8c4a" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>04大安區<br>             <b>風險值：</b>0.265<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_e2fc7937c6b17b3b5f7e82738f869258.setContent(html_907d937655a4d8d7420052acc78e8c4a);
+            
+        
+
+        circle_marker_ce497e4a11b0366c11650da5acc0110c.bindPopup(popup_e2fc7937c6b17b3b5f7e82738f869258)
+        ;
+
+        
+    
+    
+            var circle_marker_1b17c3c26965d67feebc1f406f42c9ed = L.circleMarker(
+                [25.011, 121.537],
+                {"bubblingMouseEvents": true, "color": "#fed672ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed672ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.146925629263547, "stroke": true, "weight": 3}
+            ).addTo(feature_group_663e39c37202c4e9b7aaa6461852b6cf);
+        
+    
+        var popup_d46947872e18c7d61e088a0f2d7f9353 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_8c843aacbf2eb4720ba6a5fe73b90c78 = $(`<div id="html_8c843aacbf2eb4720ba6a5fe73b90c78" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>04大安區<br>             <b>風險值：</b>0.262<br>             <b>時段：</b>9 時         </div>         </div>`)[0];
+                popup_d46947872e18c7d61e088a0f2d7f9353.setContent(html_8c843aacbf2eb4720ba6a5fe73b90c78);
+            
+        
+
+        circle_marker_1b17c3c26965d67feebc1f406f42c9ed.bindPopup(popup_d46947872e18c7d61e088a0f2d7f9353)
+        ;
+
+        
+    
+    
+            var circle_marker_24c51c27424d8fc4f468cc17462afd1e = L.circleMarker(
+                [25.011, 121.537],
+                {"bubblingMouseEvents": true, "color": "#fed875ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed875ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.034535428218419, "stroke": true, "weight": 3}
+            ).addTo(feature_group_663e39c37202c4e9b7aaa6461852b6cf);
+        
+    
+        var popup_8ed234c5c53f9fff1db3db07a5136254 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_04dfb54b92969878a5f8b10eb72b79d9 = $(`<div id="html_04dfb54b92969878a5f8b10eb72b79d9" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>04大安區<br>             <b>風險值：</b>0.253<br>             <b>時段：</b>12 時         </div>         </div>`)[0];
+                popup_8ed234c5c53f9fff1db3db07a5136254.setContent(html_04dfb54b92969878a5f8b10eb72b79d9);
+            
+        
+
+        circle_marker_24c51c27424d8fc4f468cc17462afd1e.bindPopup(popup_8ed234c5c53f9fff1db3db07a5136254)
+        ;
+
+        
+    
+    
+            feature_group_663e39c37202c4e9b7aaa6461852b6cf.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_7e7b990e126acfca99db8e26ade3f31e = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_fef3f88183bff1b4ccd008383423724b = L.circleMarker(
+                [25.039, 121.518],
+                {"bubblingMouseEvents": true, "color": "#fd7735ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd7735ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.51988896466833, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7e7b990e126acfca99db8e26ade3f31e);
+        
+    
+        var popup_2120ab81d24f5bfde97e3e633ba3401f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_d8291a9f9f56a85711a1a84835f6dbc6 = $(`<div id="html_d8291a9f9f56a85711a1a84835f6dbc6" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>05中正區<br>             <b>風險值：</b>0.543<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_2120ab81d24f5bfde97e3e633ba3401f.setContent(html_d8291a9f9f56a85711a1a84835f6dbc6);
+            
+        
+
+        circle_marker_fef3f88183bff1b4ccd008383423724b.bindPopup(popup_2120ab81d24f5bfde97e3e633ba3401f)
+        ;
+
+        
+    
+    
+            var circle_marker_27dc31999042864acc8576e355155f98 = L.circleMarker(
+                [25.039, 121.518],
+                {"bubblingMouseEvents": true, "color": "#fe9d43ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9d43ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.34513419625962, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7e7b990e126acfca99db8e26ade3f31e);
+        
+    
+        var popup_989efa094c81e0f5f74142dbfaaeb01b = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_16daeca8320f04c6ec3c63d0dcfd7187 = $(`<div id="html_16daeca8320f04c6ec3c63d0dcfd7187" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>05中正區<br>             <b>風險值：</b>0.445<br>             <b>時段：</b>18 時         </div>         </div>`)[0];
+                popup_989efa094c81e0f5f74142dbfaaeb01b.setContent(html_16daeca8320f04c6ec3c63d0dcfd7187);
+            
+        
+
+        circle_marker_27dc31999042864acc8576e355155f98.bindPopup(popup_989efa094c81e0f5f74142dbfaaeb01b)
+        ;
+
+        
+    
+    
+            var circle_marker_7fbb3d537c2c22e0db448b5b238ef9b9 = L.circleMarker(
+                [25.039, 121.518],
+                {"bubblingMouseEvents": true, "color": "#feb34dff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feb34dff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.46406811995309, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7e7b990e126acfca99db8e26ade3f31e);
+        
+    
+        var popup_8958b0ddf59270824b712a10e6af49bd = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_5f760d79a58a1e45a27223937b2a7840 = $(`<div id="html_5f760d79a58a1e45a27223937b2a7840" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>05中正區<br>             <b>風險值：</b>0.372<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_8958b0ddf59270824b712a10e6af49bd.setContent(html_5f760d79a58a1e45a27223937b2a7840);
+            
+        
+
+        circle_marker_7fbb3d537c2c22e0db448b5b238ef9b9.bindPopup(popup_8958b0ddf59270824b712a10e6af49bd)
+        ;
+
+        
+    
+    
+            var circle_marker_9d23f5321892bfef86c6e74f8c724b43 = L.circleMarker(
+                [25.039, 121.518],
+                {"bubblingMouseEvents": true, "color": "#feb54eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feb54eff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.405330381532654, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7e7b990e126acfca99db8e26ade3f31e);
+        
+    
+        var popup_a828e71ffe3940955ed7cfb7792fd882 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_b91147fa1cbfc3dd73e6b79b141d465e = $(`<div id="html_b91147fa1cbfc3dd73e6b79b141d465e" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>05中正區<br>             <b>風險值：</b>0.367<br>             <b>時段：</b>12 時         </div>         </div>`)[0];
+                popup_a828e71ffe3940955ed7cfb7792fd882.setContent(html_b91147fa1cbfc3dd73e6b79b141d465e);
+            
+        
+
+        circle_marker_9d23f5321892bfef86c6e74f8c724b43.bindPopup(popup_a828e71ffe3940955ed7cfb7792fd882)
+        ;
+
+        
+    
+    
+            var circle_marker_a4747805f55211126717ddeb0f023d59 = L.circleMarker(
+                [25.039, 121.518],
+                {"bubblingMouseEvents": true, "color": "#febf5aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#febf5aff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.994166212589608, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7e7b990e126acfca99db8e26ade3f31e);
+        
+    
+        var popup_5917c6ca6b0530a112265b2f9b127e8f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_30bebf083535eb80a81b01c54676305b = $(`<div id="html_30bebf083535eb80a81b01c54676305b" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>05中正區<br>             <b>風險值：</b>0.333<br>             <b>時段：</b>9 時         </div>         </div>`)[0];
+                popup_5917c6ca6b0530a112265b2f9b127e8f.setContent(html_30bebf083535eb80a81b01c54676305b);
+            
+        
+
+        circle_marker_a4747805f55211126717ddeb0f023d59.bindPopup(popup_5917c6ca6b0530a112265b2f9b127e8f)
+        ;
+
+        
+    
+    
+            feature_group_7e7b990e126acfca99db8e26ade3f31e.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_4ac1759a72aea083dc5f5ba035a7bf9a = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_ae9fd0cf5b6a7616dd517d2badc13e60 = L.circleMarker(
+                [25.05, 121.572],
+                {"bubblingMouseEvents": true, "color": "#fea144ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea144ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.201345773810841, "stroke": true, "weight": 3}
+            ).addTo(feature_group_4ac1759a72aea083dc5f5ba035a7bf9a);
+        
+    
+        var popup_7d0214b9899abe971abd2e8f8b738cfd = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_b2b1d9825db3c21fc805e3f131f98772 = $(`<div id="html_b2b1d9825db3c21fc805e3f131f98772" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>06松山區<br>             <b>風險值：</b>0.433<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_7d0214b9899abe971abd2e8f8b738cfd.setContent(html_b2b1d9825db3c21fc805e3f131f98772);
+            
+        
+
+        circle_marker_ae9fd0cf5b6a7616dd517d2badc13e60.bindPopup(popup_7d0214b9899abe971abd2e8f8b738cfd)
+        ;
+
+        
+    
+    
+            var circle_marker_ceae7dbb822a48e1db4f0d1c7685cabb = L.circleMarker(
+                [25.048000000000002, 121.558],
+                {"bubblingMouseEvents": true, "color": "#fead4aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fead4aff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.705979509638379, "stroke": true, "weight": 3}
+            ).addTo(feature_group_4ac1759a72aea083dc5f5ba035a7bf9a);
+        
+    
+        var popup_0b8922c963941ab181d01a110d7ee056 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_f1956ff597298fa614a153499a6a558b = $(`<div id="html_f1956ff597298fa614a153499a6a558b" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>06松山區<br>             <b>風險值：</b>0.392<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_0b8922c963941ab181d01a110d7ee056.setContent(html_f1956ff597298fa614a153499a6a558b);
+            
+        
+
+        circle_marker_ceae7dbb822a48e1db4f0d1c7685cabb.bindPopup(popup_0b8922c963941ab181d01a110d7ee056)
+        ;
+
+        
+    
+    
+            var circle_marker_714061577ebe186faf92acb4d3f24d3c = L.circleMarker(
+                [25.049, 121.558],
+                {"bubblingMouseEvents": true, "color": "#fead4aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fead4aff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.705979509638379, "stroke": true, "weight": 3}
+            ).addTo(feature_group_4ac1759a72aea083dc5f5ba035a7bf9a);
+        
+    
+        var popup_3d9a04f5ad2e9b2ebc6f52d72e1b31b7 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_6ebf31454bb96bfcc37daed04d2e0e82 = $(`<div id="html_6ebf31454bb96bfcc37daed04d2e0e82" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>06松山區<br>             <b>風險值：</b>0.392<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_3d9a04f5ad2e9b2ebc6f52d72e1b31b7.setContent(html_6ebf31454bb96bfcc37daed04d2e0e82);
+            
+        
+
+        circle_marker_714061577ebe186faf92acb4d3f24d3c.bindPopup(popup_3d9a04f5ad2e9b2ebc6f52d72e1b31b7)
+        ;
+
+        
+    
+    
+            var circle_marker_d90f31ddd68c96f6a23295eabc9dd9e3 = L.circleMarker(
+                [25.063, 121.566],
+                {"bubblingMouseEvents": true, "color": "#feb34dff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feb34dff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.458296377552148, "stroke": true, "weight": 3}
+            ).addTo(feature_group_4ac1759a72aea083dc5f5ba035a7bf9a);
+        
+    
+        var popup_b82f2eaf5b210fd19e1178b827ab3a5a = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_b9aa77c7369dbf2527f39a632cf26764 = $(`<div id="html_b9aa77c7369dbf2527f39a632cf26764" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>06松山區<br>             <b>風險值：</b>0.372<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_b82f2eaf5b210fd19e1178b827ab3a5a.setContent(html_b9aa77c7369dbf2527f39a632cf26764);
+            
+        
+
+        circle_marker_d90f31ddd68c96f6a23295eabc9dd9e3.bindPopup(popup_b82f2eaf5b210fd19e1178b827ab3a5a)
+        ;
+
+        
+    
+    
+            var circle_marker_8edc6c374b0cfe5e745ec791cb4cac00 = L.circleMarker(
+                [25.05, 121.572],
+                {"bubblingMouseEvents": true, "color": "#feb44eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feb44eff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.417015855537777, "stroke": true, "weight": 3}
+            ).addTo(feature_group_4ac1759a72aea083dc5f5ba035a7bf9a);
+        
+    
+        var popup_95366e6f36560b3325169f2af9937202 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_1b548ab162b8b6a2ab279e8c3301d625 = $(`<div id="html_1b548ab162b8b6a2ab279e8c3301d625" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>06松山區<br>             <b>風險值：</b>0.368<br>             <b>時段：</b>18 時         </div>         </div>`)[0];
+                popup_95366e6f36560b3325169f2af9937202.setContent(html_1b548ab162b8b6a2ab279e8c3301d625);
+            
+        
+
+        circle_marker_8edc6c374b0cfe5e745ec791cb4cac00.bindPopup(popup_95366e6f36560b3325169f2af9937202)
+        ;
+
+        
+    
+    
+            feature_group_4ac1759a72aea083dc5f5ba035a7bf9a.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_53091a767faf0d9e4bb31eca9e2a8d02 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_9c3e0e83fb0930146904f759485de995 = L.circleMarker(
+                [25.041, 121.56400000000001],
+                {"bubblingMouseEvents": true, "color": "#febc57ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#febc57ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.107534272868168, "stroke": true, "weight": 3}
+            ).addTo(feature_group_53091a767faf0d9e4bb31eca9e2a8d02);
+        
+    
+        var popup_faf2be71851194b2639e0607a6f59bb6 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_4118c316ea44a52593e254ccf54f5d87 = $(`<div id="html_4118c316ea44a52593e254ccf54f5d87" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>07信義區<br>             <b>風險值：</b>0.342<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_faf2be71851194b2639e0607a6f59bb6.setContent(html_4118c316ea44a52593e254ccf54f5d87);
+            
+        
+
+        circle_marker_9c3e0e83fb0930146904f759485de995.bindPopup(popup_faf2be71851194b2639e0607a6f59bb6)
+        ;
+
+        
+    
+    
+            var circle_marker_8900ca6890a7d5284a1da020cb83dbb2 = L.circleMarker(
+                [25.041, 121.56400000000001],
+                {"bubblingMouseEvents": true, "color": "#febc57ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#febc57ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.107534272868168, "stroke": true, "weight": 3}
+            ).addTo(feature_group_53091a767faf0d9e4bb31eca9e2a8d02);
+        
+    
+        var popup_09f82b53e360829fd521208927100e44 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_be3aa9df0e411ed54b3a28f3d3bf3667 = $(`<div id="html_be3aa9df0e411ed54b3a28f3d3bf3667" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>07信義區<br>             <b>風險值：</b>0.342<br>             <b>時段：</b>18 時         </div>         </div>`)[0];
+                popup_09f82b53e360829fd521208927100e44.setContent(html_be3aa9df0e411ed54b3a28f3d3bf3667);
+            
+        
+
+        circle_marker_8900ca6890a7d5284a1da020cb83dbb2.bindPopup(popup_09f82b53e360829fd521208927100e44)
+        ;
+
+        
+    
+    
+            var circle_marker_afe4dd3ba47f4bc43ebd7927b254dd6d = L.circleMarker(
+                [25.041, 121.56400000000001],
+                {"bubblingMouseEvents": true, "color": "#fec45fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec45fff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.807545814737345, "stroke": true, "weight": 3}
+            ).addTo(feature_group_53091a767faf0d9e4bb31eca9e2a8d02);
+        
+    
+        var popup_2a45f016924bac09bd6683d949ced3e3 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_3a3f3833b6cd7379a59a434c0c9f977d = $(`<div id="html_3a3f3833b6cd7379a59a434c0c9f977d" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>07信義區<br>             <b>風險值：</b>0.317<br>             <b>時段：</b>9 時         </div>         </div>`)[0];
+                popup_2a45f016924bac09bd6683d949ced3e3.setContent(html_3a3f3833b6cd7379a59a434c0c9f977d);
+            
+        
+
+        circle_marker_afe4dd3ba47f4bc43ebd7927b254dd6d.bindPopup(popup_2a45f016924bac09bd6683d949ced3e3)
+        ;
+
+        
+    
+    
+            var circle_marker_0880bef653bc2c36272a0c1261273ae2 = L.circleMarker(
+                [25.041, 121.565],
+                {"bubblingMouseEvents": true, "color": "#fec863ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec863ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.682616934295599, "stroke": true, "weight": 3}
+            ).addTo(feature_group_53091a767faf0d9e4bb31eca9e2a8d02);
+        
+    
+        var popup_fc7ef2fcd8d9cd87d718f31fbe377a72 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0ba5f85ea77929b20377afe37b6894a7 = $(`<div id="html_0ba5f85ea77929b20377afe37b6894a7" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>07信義區<br>             <b>風險值：</b>0.307<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_fc7ef2fcd8d9cd87d718f31fbe377a72.setContent(html_0ba5f85ea77929b20377afe37b6894a7);
+            
+        
+
+        circle_marker_0880bef653bc2c36272a0c1261273ae2.bindPopup(popup_fc7ef2fcd8d9cd87d718f31fbe377a72)
+        ;
+
+        
+    
+    
+            var circle_marker_6ff3aeeab4a04f7d0a9c44b3ce31a4f4 = L.circleMarker(
+                [25.048000000000002, 121.566],
+                {"bubblingMouseEvents": true, "color": "#fec863ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec863ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.682616934295599, "stroke": true, "weight": 3}
+            ).addTo(feature_group_53091a767faf0d9e4bb31eca9e2a8d02);
+        
+    
+        var popup_c01b4ed908444be0649ff44bc91a359e = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_67bb573bc14d63d6973b638f0b3fdf02 = $(`<div id="html_67bb573bc14d63d6973b638f0b3fdf02" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>07信義區<br>             <b>風險值：</b>0.307<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_c01b4ed908444be0649ff44bc91a359e.setContent(html_67bb573bc14d63d6973b638f0b3fdf02);
+            
+        
+
+        circle_marker_6ff3aeeab4a04f7d0a9c44b3ce31a4f4.bindPopup(popup_c01b4ed908444be0649ff44bc91a359e)
+        ;
+
+        
+    
+    
+            feature_group_53091a767faf0d9e4bb31eca9e2a8d02.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_f2df4489746f0f328e0e8767b523ca16 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_942f875e9b844e170545d524cb01ff1e = L.circleMarker(
+                [25.096, 121.514],
+                {"bubblingMouseEvents": true, "color": "#fea847ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea847ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.905555421654254, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f2df4489746f0f328e0e8767b523ca16);
+        
+    
+        var popup_9b6ba9ca0c9bee7e3dd6176036f4afd6 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_8324432c0a16d63b67db2d941f95aaf9 = $(`<div id="html_8324432c0a16d63b67db2d941f95aaf9" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>08士林區<br>             <b>風險值：</b>0.409<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_9b6ba9ca0c9bee7e3dd6176036f4afd6.setContent(html_8324432c0a16d63b67db2d941f95aaf9);
+            
+        
+
+        circle_marker_942f875e9b844e170545d524cb01ff1e.bindPopup(popup_9b6ba9ca0c9bee7e3dd6176036f4afd6)
+        ;
+
+        
+    
+    
+            var circle_marker_25b2ea62e9967680bfb05f358aaaf609 = L.circleMarker(
+                [25.087, 121.509],
+                {"bubblingMouseEvents": true, "color": "#feac49ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feac49ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.75690222705867, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f2df4489746f0f328e0e8767b523ca16);
+        
+    
+        var popup_e9187c5b844d4832ec61ab9dfe83c1be = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_c86a18f6f01dc3d18eee7059946d9fb6 = $(`<div id="html_c86a18f6f01dc3d18eee7059946d9fb6" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>08士林區<br>             <b>風險值：</b>0.396<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_e9187c5b844d4832ec61ab9dfe83c1be.setContent(html_c86a18f6f01dc3d18eee7059946d9fb6);
+            
+        
+
+        circle_marker_25b2ea62e9967680bfb05f358aaaf609.bindPopup(popup_e9187c5b844d4832ec61ab9dfe83c1be)
+        ;
+
+        
+    
+    
+            var circle_marker_7e48e4b5b6777fa16cc2d5c8f9118203 = L.circleMarker(
+                [25.096, 121.514],
+                {"bubblingMouseEvents": true, "color": "#feb853ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feb853ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.260825280522553, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f2df4489746f0f328e0e8767b523ca16);
+        
+    
+        var popup_a25890996631ec6da277c51c0a586268 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_e13de52d7744cafc5702344b29104f68 = $(`<div id="html_e13de52d7744cafc5702344b29104f68" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>08士林區<br>             <b>風險值：</b>0.355<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_a25890996631ec6da277c51c0a586268.setContent(html_e13de52d7744cafc5702344b29104f68);
+            
+        
+
+        circle_marker_7e48e4b5b6777fa16cc2d5c8f9118203.bindPopup(popup_a25890996631ec6da277c51c0a586268)
+        ;
+
+        
+    
+    
+            var circle_marker_d5ff976a30862f9a1f35f2573d3159c7 = L.circleMarker(
+                [25.087, 121.509],
+                {"bubblingMouseEvents": true, "color": "#febc56ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#febc56ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.13170936293096, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f2df4489746f0f328e0e8767b523ca16);
+        
+    
+        var popup_3057ed12e74f20adaa94529d1d7e890e = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_b17ac0d35730df8b7d6e23497a63c9a6 = $(`<div id="html_b17ac0d35730df8b7d6e23497a63c9a6" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>08士林區<br>             <b>風險值：</b>0.344<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_3057ed12e74f20adaa94529d1d7e890e.setContent(html_b17ac0d35730df8b7d6e23497a63c9a6);
+            
+        
+
+        circle_marker_d5ff976a30862f9a1f35f2573d3159c7.bindPopup(popup_3057ed12e74f20adaa94529d1d7e890e)
+        ;
+
+        
+    
+    
+            var circle_marker_4f620d51875179d37cb0f464411fba39 = L.circleMarker(
+                [25.096, 121.514],
+                {"bubblingMouseEvents": true, "color": "#fec05bff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec05bff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.95247608259, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f2df4489746f0f328e0e8767b523ca16);
+        
+    
+        var popup_b08c5a602ecb3790184b7ab1941a44d9 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_ae0298baf32e19832866f2fc44f8d109 = $(`<div id="html_ae0298baf32e19832866f2fc44f8d109" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>08士林區<br>             <b>風險值：</b>0.329<br>             <b>時段：</b>9 時         </div>         </div>`)[0];
+                popup_b08c5a602ecb3790184b7ab1941a44d9.setContent(html_ae0298baf32e19832866f2fc44f8d109);
+            
+        
+
+        circle_marker_4f620d51875179d37cb0f464411fba39.bindPopup(popup_b08c5a602ecb3790184b7ab1941a44d9)
+        ;
+
+        
+    
+    
+            feature_group_f2df4489746f0f328e0e8767b523ca16.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_06c23c45179bb2660dda265614bdf620 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_1a2e95619fa7236333f1e8ada6b7517d = L.circleMarker(
+                [25.121000000000002, 121.5],
+                {"bubblingMouseEvents": true, "color": "#febd57ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#febd57ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.088863052905186, "stroke": true, "weight": 3}
+            ).addTo(feature_group_06c23c45179bb2660dda265614bdf620);
+        
+    
+        var popup_afcd1d100847cdb6b4af0abee459290b = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_44a662114bf095866e0fc8bc48fb6457 = $(`<div id="html_44a662114bf095866e0fc8bc48fb6457" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>09北投區<br>             <b>風險值：</b>0.341<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_afcd1d100847cdb6b4af0abee459290b.setContent(html_44a662114bf095866e0fc8bc48fb6457);
+            
+        
+
+        circle_marker_1a2e95619fa7236333f1e8ada6b7517d.bindPopup(popup_afcd1d100847cdb6b4af0abee459290b)
+        ;
+
+        
+    
+    
+            var circle_marker_0a3bec75f5bb31f17a744ee02ad452e8 = L.circleMarker(
+                [25.121000000000002, 121.5],
+                {"bubblingMouseEvents": true, "color": "#febf59ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#febf59ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.013143366740275, "stroke": true, "weight": 3}
+            ).addTo(feature_group_06c23c45179bb2660dda265614bdf620);
+        
+    
+        var popup_1ba6796802ac65eb36e54f6b5f3bdc8a = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_aa6589031b9fefc08cc746e59c3507b1 = $(`<div id="html_aa6589031b9fefc08cc746e59c3507b1" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>09北投區<br>             <b>風險值：</b>0.334<br>             <b>時段：</b>7 時         </div>         </div>`)[0];
+                popup_1ba6796802ac65eb36e54f6b5f3bdc8a.setContent(html_aa6589031b9fefc08cc746e59c3507b1);
+            
+        
+
+        circle_marker_0a3bec75f5bb31f17a744ee02ad452e8.bindPopup(popup_1ba6796802ac65eb36e54f6b5f3bdc8a)
+        ;
+
+        
+    
+    
+            var circle_marker_1783432260924cc37afba27b574a2fba = L.circleMarker(
+                [25.122, 121.486],
+                {"bubblingMouseEvents": true, "color": "#fec25dff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec25dff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.884419900259926, "stroke": true, "weight": 3}
+            ).addTo(feature_group_06c23c45179bb2660dda265614bdf620);
+        
+    
+        var popup_7f4e176dfd38448e075eab86446fac05 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0435bd161a6ed1a9edb68ba6c5bc8354 = $(`<div id="html_0435bd161a6ed1a9edb68ba6c5bc8354" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>09北投區<br>             <b>風險值：</b>0.324<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_7f4e176dfd38448e075eab86446fac05.setContent(html_0435bd161a6ed1a9edb68ba6c5bc8354);
+            
+        
+
+        circle_marker_1783432260924cc37afba27b574a2fba.bindPopup(popup_7f4e176dfd38448e075eab86446fac05)
+        ;
+
+        
+    
+    
+            var circle_marker_a0e5de011f8738d9855afe6d23fb5ac3 = L.circleMarker(
+                [25.121000000000002, 121.5],
+                {"bubblingMouseEvents": true, "color": "#fec45fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec45fff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.823844151327997, "stroke": true, "weight": 3}
+            ).addTo(feature_group_06c23c45179bb2660dda265614bdf620);
+        
+    
+        var popup_ecdffafc818c4f039bc96f1c528868ae = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_25b006feabe0df12e5d90ac5c85222d8 = $(`<div id="html_25b006feabe0df12e5d90ac5c85222d8" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>09北投區<br>             <b>風險值：</b>0.319<br>             <b>時段：</b>9 時         </div>         </div>`)[0];
+                popup_ecdffafc818c4f039bc96f1c528868ae.setContent(html_25b006feabe0df12e5d90ac5c85222d8);
+            
+        
+
+        circle_marker_a0e5de011f8738d9855afe6d23fb5ac3.bindPopup(popup_ecdffafc818c4f039bc96f1c528868ae)
+        ;
+
+        
+    
+    
+            var circle_marker_834e092f01066cd9bcd12b01d53cfdfb = L.circleMarker(
+                [25.122, 121.486],
+                {"bubblingMouseEvents": true, "color": "#fec45fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec45fff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.812486198403262, "stroke": true, "weight": 3}
+            ).addTo(feature_group_06c23c45179bb2660dda265614bdf620);
+        
+    
+        var popup_d65c386a7bb7d9e5f6a0a2143934ea49 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_87191517a92c62053d442f704c5903f0 = $(`<div id="html_87191517a92c62053d442f704c5903f0" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>09北投區<br>             <b>風險值：</b>0.318<br>             <b>時段：</b>7 時         </div>         </div>`)[0];
+                popup_d65c386a7bb7d9e5f6a0a2143934ea49.setContent(html_87191517a92c62053d442f704c5903f0);
+            
+        
+
+        circle_marker_834e092f01066cd9bcd12b01d53cfdfb.bindPopup(popup_d65c386a7bb7d9e5f6a0a2143934ea49)
+        ;
+
+        
+    
+    
+            feature_group_06c23c45179bb2660dda265614bdf620.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_e6ef5c1c6746df40e2e12fafe91b8510 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_39c6e44d7674543018d9bc88b03cb97e = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fd7535ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd7535ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.580879855662104, "stroke": true, "weight": 3}
+            ).addTo(feature_group_e6ef5c1c6746df40e2e12fafe91b8510);
+        
+    
+        var popup_960a19a671d687fef60235cb095c5958 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_9ac8f867a4e6da6500eba767d6c37cd1 = $(`<div id="html_9ac8f867a4e6da6500eba767d6c37cd1" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>10文山區<br>             <b>風險值：</b>0.548<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_960a19a671d687fef60235cb095c5958.setContent(html_9ac8f867a4e6da6500eba767d6c37cd1);
+            
+        
+
+        circle_marker_39c6e44d7674543018d9bc88b03cb97e.bindPopup(popup_960a19a671d687fef60235cb095c5958)
+        ;
+
+        
+    
+    
+            var circle_marker_05d2fddbf06ee89936ea51429cef2a69 = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fe9b42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9b42ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.444612830224044, "stroke": true, "weight": 3}
+            ).addTo(feature_group_e6ef5c1c6746df40e2e12fafe91b8510);
+        
+    
+        var popup_fc94e96a3385f945f179dfdc70bb5151 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_44311de6d5c42d1888f590322ef8c8da = $(`<div id="html_44311de6d5c42d1888f590322ef8c8da" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>10文山區<br>             <b>風險值：</b>0.454<br>             <b>時段：</b>7 時         </div>         </div>`)[0];
+                popup_fc94e96a3385f945f179dfdc70bb5151.setContent(html_44311de6d5c42d1888f590322ef8c8da);
+            
+        
+
+        circle_marker_05d2fddbf06ee89936ea51429cef2a69.bindPopup(popup_fc94e96a3385f945f179dfdc70bb5151)
+        ;
+
+        
+    
+    
+            var circle_marker_1047155f48183ebed9df26efa38929c7 = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fe9c42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9c42ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.39726837083079, "stroke": true, "weight": 3}
+            ).addTo(feature_group_e6ef5c1c6746df40e2e12fafe91b8510);
+        
+    
+        var popup_5a32eb9e5c18dfe3af105025e42870f0 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_68173c3c5da2def87fca54e50b89231c = $(`<div id="html_68173c3c5da2def87fca54e50b89231c" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>10文山區<br>             <b>風險值：</b>0.450<br>             <b>時段：</b>10 時         </div>         </div>`)[0];
+                popup_5a32eb9e5c18dfe3af105025e42870f0.setContent(html_68173c3c5da2def87fca54e50b89231c);
+            
+        
+
+        circle_marker_1047155f48183ebed9df26efa38929c7.bindPopup(popup_5a32eb9e5c18dfe3af105025e42870f0)
+        ;
+
+        
+    
+    
+            var circle_marker_056281b70cd254ce2457d334d50fe761 = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fe9c42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9c42ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.39726837083079, "stroke": true, "weight": 3}
+            ).addTo(feature_group_e6ef5c1c6746df40e2e12fafe91b8510);
+        
+    
+        var popup_fe584ac6a29219bd46973bb76130b1d2 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_22f739f9f115b096d736fc44d2381cf2 = $(`<div id="html_22f739f9f115b096d736fc44d2381cf2" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>10文山區<br>             <b>風險值：</b>0.450<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_fe584ac6a29219bd46973bb76130b1d2.setContent(html_22f739f9f115b096d736fc44d2381cf2);
+            
+        
+
+        circle_marker_056281b70cd254ce2457d334d50fe761.bindPopup(popup_fe584ac6a29219bd46973bb76130b1d2)
+        ;
+
+        
+    
+    
+            var circle_marker_ad9a75f0b6d683842a045b3fb18c7988 = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fe9c42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9c42ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.39726837083079, "stroke": true, "weight": 3}
+            ).addTo(feature_group_e6ef5c1c6746df40e2e12fafe91b8510);
+        
+    
+        var popup_2abb705ab1dcf2a11d693f5dd709c95f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_3d96c7cb61bce30895f6b7ca484ca97b = $(`<div id="html_3d96c7cb61bce30895f6b7ca484ca97b" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>10文山區<br>             <b>風險值：</b>0.450<br>             <b>時段：</b>18 時         </div>         </div>`)[0];
+                popup_2abb705ab1dcf2a11d693f5dd709c95f.setContent(html_3d96c7cb61bce30895f6b7ca484ca97b);
+            
+        
+
+        circle_marker_ad9a75f0b6d683842a045b3fb18c7988.bindPopup(popup_2abb705ab1dcf2a11d693f5dd709c95f)
+        ;
+
+        
+    
+    
+            feature_group_e6ef5c1c6746df40e2e12fafe91b8510.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_ad61933380fc2b39104fb3b3e44c54a7 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_51077642f0a6098842f476fc0fd9afd7 = L.circleMarker(
+                [25.052, 121.583],
+                {"bubblingMouseEvents": true, "color": "#fa4828ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fa4828ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.654258664890367, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ad61933380fc2b39104fb3b3e44c54a7);
+        
+    
+        var popup_7ba87ed4d15d7177c5458f3e3711f8e1 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_3a6a32aea1c725e5637258e81a2d2090 = $(`<div id="html_3a6a32aea1c725e5637258e81a2d2090" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>11南港區<br>             <b>風險值：</b>0.638<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_7ba87ed4d15d7177c5458f3e3711f8e1.setContent(html_3a6a32aea1c725e5637258e81a2d2090);
+            
+        
+
+        circle_marker_51077642f0a6098842f476fc0fd9afd7.bindPopup(popup_7ba87ed4d15d7177c5458f3e3711f8e1)
+        ;
+
+        
+    
+    
+            var circle_marker_642bfeccc3a77006f38677d8cb12138a = L.circleMarker(
+                [25.048000000000002, 121.58500000000001],
+                {"bubblingMouseEvents": true, "color": "#fd5d2eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd5d2eff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.143974753897677, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ad61933380fc2b39104fb3b3e44c54a7);
+        
+    
+        var popup_67509203671aaf125931550fb017a032 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_bdaa337cb8474aa0f9e5d68176a696bd = $(`<div id="html_bdaa337cb8474aa0f9e5d68176a696bd" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>11南港區<br>             <b>風險值：</b>0.595<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_67509203671aaf125931550fb017a032.setContent(html_bdaa337cb8474aa0f9e5d68176a696bd);
+            
+        
+
+        circle_marker_642bfeccc3a77006f38677d8cb12138a.bindPopup(popup_67509203671aaf125931550fb017a032)
+        ;
+
+        
+    
+    
+            var circle_marker_f92f673e95098a2f9a99edc4cf318d1c = L.circleMarker(
+                [25.052, 121.604],
+                {"bubblingMouseEvents": true, "color": "#fd5d2eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd5d2eff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.143974753897677, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ad61933380fc2b39104fb3b3e44c54a7);
+        
+    
+        var popup_0cb80d80894b9a44a53c0d30d169c02f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_34a21556c3d3827dc3bac7ebd872d033 = $(`<div id="html_34a21556c3d3827dc3bac7ebd872d033" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>11南港區<br>             <b>風險值：</b>0.595<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_0cb80d80894b9a44a53c0d30d169c02f.setContent(html_34a21556c3d3827dc3bac7ebd872d033);
+            
+        
+
+        circle_marker_f92f673e95098a2f9a99edc4cf318d1c.bindPopup(popup_0cb80d80894b9a44a53c0d30d169c02f)
+        ;
+
+        
+    
+    
+            var circle_marker_aa1e92d4abca9ff48e92d387915c9e3e = L.circleMarker(
+                [25.051000000000002, 121.596],
+                {"bubblingMouseEvents": true, "color": "#fd7234ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd7234ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.633690842904985, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ad61933380fc2b39104fb3b3e44c54a7);
+        
+    
+        var popup_5e85eab930a97332907a660ab5149284 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0b52c590ea5ccb87b6e14bdf5c194897 = $(`<div id="html_0b52c590ea5ccb87b6e14bdf5c194897" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>11南港區<br>             <b>風險值：</b>0.553<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_5e85eab930a97332907a660ab5149284.setContent(html_0b52c590ea5ccb87b6e14bdf5c194897);
+            
+        
+
+        circle_marker_aa1e92d4abca9ff48e92d387915c9e3e.bindPopup(popup_5e85eab930a97332907a660ab5149284)
+        ;
+
+        
+    
+    
+            var circle_marker_4ab3fa5884028017269874554f4b476b = L.circleMarker(
+                [25.045, 121.583],
+                {"bubblingMouseEvents": true, "color": "#fd883aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd883aff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.123406931912292, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ad61933380fc2b39104fb3b3e44c54a7);
+        
+    
+        var popup_ff9b9badbee344aead6cf66c546a2f44 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_cf2bea0e485e21466271c146d4d306d9 = $(`<div id="html_cf2bea0e485e21466271c146d4d306d9" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>11南港區<br>             <b>風險值：</b>0.510<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_ff9b9badbee344aead6cf66c546a2f44.setContent(html_cf2bea0e485e21466271c146d4d306d9);
+            
+        
+
+        circle_marker_4ab3fa5884028017269874554f4b476b.bindPopup(popup_ff9b9badbee344aead6cf66c546a2f44)
+        ;
+
+        
+    
+    
+            feature_group_ad61933380fc2b39104fb3b3e44c54a7.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_39945535600a26dfc03f40ad471ccd83 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_e9747af09ea9db322ef79e8bb3c1a190 = L.circleMarker(
+                [25.065, 121.611],
+                {"bubblingMouseEvents": true, "color": "#fec964ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec964ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.638028803375391, "stroke": true, "weight": 3}
+            ).addTo(feature_group_39945535600a26dfc03f40ad471ccd83);
+        
+    
+        var popup_0b94066b6b364e0945918a500e4e1a05 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_f5ef59bc014bbab0ad9ba41692ad1276 = $(`<div id="html_f5ef59bc014bbab0ad9ba41692ad1276" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>12內湖區<br>             <b>風險值：</b>0.303<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_0b94066b6b364e0945918a500e4e1a05.setContent(html_f5ef59bc014bbab0ad9ba41692ad1276);
+            
+        
+
+        circle_marker_e9747af09ea9db322ef79e8bb3c1a190.bindPopup(popup_0b94066b6b364e0945918a500e4e1a05)
+        ;
+
+        
+    
+    
+            var circle_marker_1c358cfa8fba58cee792bb46af4db241 = L.circleMarker(
+                [25.068, 121.61800000000001],
+                {"bubblingMouseEvents": true, "color": "#fed36fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed36fff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.233803380778125, "stroke": true, "weight": 3}
+            ).addTo(feature_group_39945535600a26dfc03f40ad471ccd83);
+        
+    
+        var popup_f34b26fe01553be042319192e9554487 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_13fa07e3a01fa11daf21fb1ced71152e = $(`<div id="html_13fa07e3a01fa11daf21fb1ced71152e" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>12內湖區<br>             <b>風險值：</b>0.269<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_f34b26fe01553be042319192e9554487.setContent(html_13fa07e3a01fa11daf21fb1ced71152e);
+            
+        
+
+        circle_marker_1c358cfa8fba58cee792bb46af4db241.bindPopup(popup_f34b26fe01553be042319192e9554487)
+        ;
+
+        
+    
+    
+            var circle_marker_0bf149f2f5b8c4dbe7f3fe503970fde1 = L.circleMarker(
+                [25.065, 121.611],
+                {"bubblingMouseEvents": true, "color": "#fed774ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed774ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.077166029521685, "stroke": true, "weight": 3}
+            ).addTo(feature_group_39945535600a26dfc03f40ad471ccd83);
+        
+    
+        var popup_82839fbc96ea6e8de1f68c95ee95a14d = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_a11a76cbf53ad33b37ebc0e0eadefa33 = $(`<div id="html_a11a76cbf53ad33b37ebc0e0eadefa33" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>12內湖區<br>             <b>風險值：</b>0.256<br>             <b>時段：</b>17 時         </div>         </div>`)[0];
+                popup_82839fbc96ea6e8de1f68c95ee95a14d.setContent(html_a11a76cbf53ad33b37ebc0e0eadefa33);
+            
+        
+
+        circle_marker_0bf149f2f5b8c4dbe7f3fe503970fde1.bindPopup(popup_82839fbc96ea6e8de1f68c95ee95a14d)
+        ;
+
+        
+    
+    
+            var circle_marker_37c8a7677b7c95df4cf4517b4cb2a063 = L.circleMarker(
+                [25.067, 121.57900000000001],
+                {"bubblingMouseEvents": true, "color": "#fed975ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed975ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.031690669479493, "stroke": true, "weight": 3}
+            ).addTo(feature_group_39945535600a26dfc03f40ad471ccd83);
+        
+    
+        var popup_335e78737d74d8efb03c0b8a5b015258 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_830876f5b21264bdda628ef6fb2e8702 = $(`<div id="html_830876f5b21264bdda628ef6fb2e8702" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>12內湖區<br>             <b>風險值：</b>0.253<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_335e78737d74d8efb03c0b8a5b015258.setContent(html_830876f5b21264bdda628ef6fb2e8702);
+            
+        
+
+        circle_marker_37c8a7677b7c95df4cf4517b4cb2a063.bindPopup(popup_335e78737d74d8efb03c0b8a5b015258)
+        ;
+
+        
+    
+    
+            var circle_marker_406c18969cb05ce24e902a8bb7b7af2e = L.circleMarker(
+                [25.069, 121.584],
+                {"bubblingMouseEvents": true, "color": "#fed975ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fed975ff", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.031690669479493, "stroke": true, "weight": 3}
+            ).addTo(feature_group_39945535600a26dfc03f40ad471ccd83);
+        
+    
+        var popup_a9dfa13934b0d44c27a7b15e5de56f54 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_6a02e8506d3c41d976a7bb1f345571fc = $(`<div id="html_6a02e8506d3c41d976a7bb1f345571fc" style="width: 100.0%; height: 100.0%;">         <div style="width:240px; font-size:13px; line-height:1.5;">             <b>行政區：</b>12內湖區<br>             <b>風險值：</b>0.253<br>             <b>時段：</b>8 時         </div>         </div>`)[0];
+                popup_a9dfa13934b0d44c27a7b15e5de56f54.setContent(html_6a02e8506d3c41d976a7bb1f345571fc);
+            
+        
+
+        circle_marker_406c18969cb05ce24e902a8bb7b7af2e.bindPopup(popup_a9dfa13934b0d44c27a7b15e5de56f54)
+        ;
+
+        
+    
+    
+            feature_group_39945535600a26dfc03f40ad471ccd83.addTo(map_e51b878286a70588d8ffc618bc21968a);
+        
+    
+            var feature_group_6fdea414e5b709caf759ae9c15bd7a17 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_f14b54eaffd36268e2169799bef7dd3b = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#800026ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800026ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_48537c60b5d83a0abbca5525773ea550 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_5af17dad729285cf064e7693b2dd84fe = $(`<div id="html_5af17dad729285cf064e7693b2dd84fe" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>1.000<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_48537c60b5d83a0abbca5525773ea550.setContent(html_5af17dad729285cf064e7693b2dd84fe);
+            
+        
+
+        circle_marker_f14b54eaffd36268e2169799bef7dd3b.bindPopup(popup_48537c60b5d83a0abbca5525773ea550)
+        ;
+
+        
+    
+    
+            var circle_marker_7912c321bb7efcb5ee58b1657914f3de = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#b80026ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b80026ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.62857142857143, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_96388c5103a7bfd3a03fe2f77d2b67fe = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_7e18536d32e1afa6ed1876ea2fbd635d = $(`<div id="html_7e18536d32e1afa6ed1876ea2fbd635d" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.886<br>         <b>時段：</b>17 時     </div>     </div>`)[0];
+                popup_96388c5103a7bfd3a03fe2f77d2b67fe.setContent(html_7e18536d32e1afa6ed1876ea2fbd635d);
+            
+        
+
+        circle_marker_7912c321bb7efcb5ee58b1657914f3de.bindPopup(popup_96388c5103a7bfd3a03fe2f77d2b67fe)
+        ;
+
+        
+    
+    
+            var circle_marker_bcbcd440129a2855c852422e597d99ba = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#d6111fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d6111fff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.50943396226415, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_5b36268a8b5ade447db69b42ef1543ba = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_b8cc61b2ae3991fe166c2f3796a50fc2 = $(`<div id="html_b8cc61b2ae3991fe166c2f3796a50fc2" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.792<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_5b36268a8b5ade447db69b42ef1543ba.setContent(html_b8cc61b2ae3991fe166c2f3796a50fc2);
+            
+        
+
+        circle_marker_bcbcd440129a2855c852422e597d99ba.bindPopup(popup_5b36268a8b5ade447db69b42ef1543ba)
+        ;
+
+        
+    
+    
+            var circle_marker_0db43bbb9e3d8f9503b97ecc419d6439 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#e8231eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e8231eff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.742857142857144, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_fc498fbf1f408d9ce5d27577f9decd66 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_5f5b50e4da5bb87bdc4b31f9145c40a8 = $(`<div id="html_5f5b50e4da5bb87bdc4b31f9145c40a8" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.729<br>         <b>時段：</b>11 時     </div>     </div>`)[0];
+                popup_fc498fbf1f408d9ce5d27577f9decd66.setContent(html_5f5b50e4da5bb87bdc4b31f9145c40a8);
+            
+        
+
+        circle_marker_0db43bbb9e3d8f9503b97ecc419d6439.bindPopup(popup_fc498fbf1f408d9ce5d27577f9decd66)
+        ;
+
+        
+    
+    
+            var circle_marker_1791514f62b06760ade8b90e5cf13cc6 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#e9261fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e9261fff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.657142857142857, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_08f13f8c6046e843434ae2de2c1af4b9 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_6c6724d095fb0339e2ede354f466aec6 = $(`<div id="html_6c6724d095fb0339e2ede354f466aec6" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.721<br>         <b>時段：</b>18 時     </div>     </div>`)[0];
+                popup_08f13f8c6046e843434ae2de2c1af4b9.setContent(html_6c6724d095fb0339e2ede354f466aec6);
+            
+        
+
+        circle_marker_1791514f62b06760ade8b90e5cf13cc6.bindPopup(popup_08f13f8c6046e843434ae2de2c1af4b9)
+        ;
+
+        
+    
+    
+            var circle_marker_6d25c2f8c1236031418aab27b3954b1a = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#ed2e21ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ed2e21ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.422641509433962, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_3d6f76e853c1785fa258a01edfa9ea54 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_d8befbeecb404f41d4dcd24eb5176ed9 = $(`<div id="html_d8befbeecb404f41d4dcd24eb5176ed9" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.702<br>         <b>時段：</b>17 時     </div>     </div>`)[0];
+                popup_3d6f76e853c1785fa258a01edfa9ea54.setContent(html_d8befbeecb404f41d4dcd24eb5176ed9);
+            
+        
+
+        circle_marker_6d25c2f8c1236031418aab27b3954b1a.bindPopup(popup_3d6f76e853c1785fa258a01edfa9ea54)
+        ;
+
+        
+    
+    
+            var circle_marker_cf2514e5581befc8b2872fd5e300e360 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#f94628ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f94628ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.714285714285715, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_a639d76d7b21d5b7f6faf9a61951dfcc = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_6b6a29c51f959f316a04f2944e937f9d = $(`<div id="html_6b6a29c51f959f316a04f2944e937f9d" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.643<br>         <b>時段：</b>15 時     </div>     </div>`)[0];
+                popup_a639d76d7b21d5b7f6faf9a61951dfcc.setContent(html_6b6a29c51f959f316a04f2944e937f9d);
+            
+        
+
+        circle_marker_cf2514e5581befc8b2872fd5e300e360.bindPopup(popup_a639d76d7b21d5b7f6faf9a61951dfcc)
+        ;
+
+        
+    
+    
+            var circle_marker_5415fbd91fedf5ce88dd2a43ce85c67a = L.circleMarker(
+                [25.052, 121.583],
+                {"bubblingMouseEvents": true, "color": "#fa4828ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fa4828ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.654258664890367, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_9ba3ef4fe67b38869f3c255fac341671 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_99a1ab07854bffd9774995bb81d3a49a = $(`<div id="html_99a1ab07854bffd9774995bb81d3a49a" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>11南港區<br>         <b>風險值：</b>0.638<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_9ba3ef4fe67b38869f3c255fac341671.setContent(html_99a1ab07854bffd9774995bb81d3a49a);
+            
+        
+
+        circle_marker_5415fbd91fedf5ce88dd2a43ce85c67a.bindPopup(popup_9ba3ef4fe67b38869f3c255fac341671)
+        ;
+
+        
+    
+    
+            var circle_marker_a6b3d47d2a8f3d961a2d8128cbf52f8a = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#fc4c29ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fc4c29ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.542857142857141, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_f2b31c2e80d30b61b415d5c1b53eda26 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_cf6bf81970e6e4e45db69989a0292111 = $(`<div id="html_cf6bf81970e6e4e45db69989a0292111" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.629<br>         <b>時段：</b>19 時     </div>     </div>`)[0];
+                popup_f2b31c2e80d30b61b415d5c1b53eda26.setContent(html_cf6bf81970e6e4e45db69989a0292111);
+            
+        
+
+        circle_marker_a6b3d47d2a8f3d961a2d8128cbf52f8a.bindPopup(popup_f2b31c2e80d30b61b415d5c1b53eda26)
+        ;
+
+        
+    
+    
+            var circle_marker_effc01fc12b7988aa8ab773ae2786c13 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#fd532bff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd532bff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.37142857142857, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_fa769baba73e4131b365f720c36e4295 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_308471b7bebe0f25be66a343deb8d6a5 = $(`<div id="html_308471b7bebe0f25be66a343deb8d6a5" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.614<br>         <b>時段：</b>14 時     </div>     </div>`)[0];
+                popup_fa769baba73e4131b365f720c36e4295.setContent(html_308471b7bebe0f25be66a343deb8d6a5);
+            
+        
+
+        circle_marker_effc01fc12b7988aa8ab773ae2786c13.bindPopup(popup_fa769baba73e4131b365f720c36e4295)
+        ;
+
+        
+    
+    
+            var circle_marker_c720334777fe9fb5cfa5526610727976 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#fd572cff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd572cff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.285714285714285, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_b8ac22e1a123d582aa0d8de0a72b9bdd = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_7361c18f41950c1af383201f3d6c5587 = $(`<div id="html_7361c18f41950c1af383201f3d6c5587" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.607<br>         <b>時段：</b>9 時     </div>     </div>`)[0];
+                popup_b8ac22e1a123d582aa0d8de0a72b9bdd.setContent(html_7361c18f41950c1af383201f3d6c5587);
+            
+        
+
+        circle_marker_c720334777fe9fb5cfa5526610727976.bindPopup(popup_b8ac22e1a123d582aa0d8de0a72b9bdd)
+        ;
+
+        
+    
+    
+            var circle_marker_dfdbe634249d0829d81a2959f64893a4 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#fd5a2dff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd5a2dff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.2, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_705f5d5c5d6b4a7a8c4f38d6fb235a97 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_8e824e8639c433d522dcdf0805eab9bf = $(`<div id="html_8e824e8639c433d522dcdf0805eab9bf" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.600<br>         <b>時段：</b>12 時     </div>     </div>`)[0];
+                popup_705f5d5c5d6b4a7a8c4f38d6fb235a97.setContent(html_8e824e8639c433d522dcdf0805eab9bf);
+            
+        
+
+        circle_marker_dfdbe634249d0829d81a2959f64893a4.bindPopup(popup_705f5d5c5d6b4a7a8c4f38d6fb235a97)
+        ;
+
+        
+    
+    
+            var circle_marker_9f98f836cf9e5ac71bb86ce56b6d1afa = L.circleMarker(
+                [25.052, 121.604],
+                {"bubblingMouseEvents": true, "color": "#fd5d2eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd5d2eff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.143974753897677, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_ff7a9eb7f09ea48e6f4a76e0ec54881d = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_d163e58ffaf33e04433a899c146bc797 = $(`<div id="html_d163e58ffaf33e04433a899c146bc797" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>11南港區<br>         <b>風險值：</b>0.595<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_ff7a9eb7f09ea48e6f4a76e0ec54881d.setContent(html_d163e58ffaf33e04433a899c146bc797);
+            
+        
+
+        circle_marker_9f98f836cf9e5ac71bb86ce56b6d1afa.bindPopup(popup_ff7a9eb7f09ea48e6f4a76e0ec54881d)
+        ;
+
+        
+    
+    
+            var circle_marker_b54a922cf633aad4cb084fe70e7d463a = L.circleMarker(
+                [25.048000000000002, 121.58500000000001],
+                {"bubblingMouseEvents": true, "color": "#fd5d2eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd5d2eff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.143974753897677, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_036132d12ae820f2c50dbff05684dadb = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0a73c22f5edefbc32fe539530cb07a11 = $(`<div id="html_0a73c22f5edefbc32fe539530cb07a11" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>11南港區<br>         <b>風險值：</b>0.595<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_036132d12ae820f2c50dbff05684dadb.setContent(html_0a73c22f5edefbc32fe539530cb07a11);
+            
+        
+
+        circle_marker_b54a922cf633aad4cb084fe70e7d463a.bindPopup(popup_036132d12ae820f2c50dbff05684dadb)
+        ;
+
+        
+    
+    
+            var circle_marker_76a9b02a58fd0b8c80a45e25e5d79801 = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#fd6631ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd6631ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.928301886792452, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_8b22c984680793e5505a52df3ab2dcaf = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_33664d00a08c8eb6b1ded2416504b293 = $(`<div id="html_33664d00a08c8eb6b1ded2416504b293" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.577<br>         <b>時段：</b>11 時     </div>     </div>`)[0];
+                popup_8b22c984680793e5505a52df3ab2dcaf.setContent(html_33664d00a08c8eb6b1ded2416504b293);
+            
+        
+
+        circle_marker_76a9b02a58fd0b8c80a45e25e5d79801.bindPopup(popup_8b22c984680793e5505a52df3ab2dcaf)
+        ;
+
+        
+    
+    
+            var circle_marker_9c1464bb47214fa0c1ff2aeb83a50955 = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#fd6931ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd6931ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.860377358490567, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_e80fc64838755d458bd7f44178807f9d = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_ee6d8454747ccca2cda3eb6aee2320a2 = $(`<div id="html_ee6d8454747ccca2cda3eb6aee2320a2" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.572<br>         <b>時段：</b>18 時     </div>     </div>`)[0];
+                popup_e80fc64838755d458bd7f44178807f9d.setContent(html_ee6d8454747ccca2cda3eb6aee2320a2);
+            
+        
+
+        circle_marker_9c1464bb47214fa0c1ff2aeb83a50955.bindPopup(popup_e80fc64838755d458bd7f44178807f9d)
+        ;
+
+        
+    
+    
+            var circle_marker_8f0a3e6c3efd692771d0083827d337d9 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#fd6931ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd6931ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.857142857142858, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_cee769c0344aea7f14863839596deaa6 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_c1c6d59373b42005653cf904a855fc4f = $(`<div id="html_c1c6d59373b42005653cf904a855fc4f" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.571<br>         <b>時段：</b>10 時     </div>     </div>`)[0];
+                popup_cee769c0344aea7f14863839596deaa6.setContent(html_c1c6d59373b42005653cf904a855fc4f);
+            
+        
+
+        circle_marker_8f0a3e6c3efd692771d0083827d337d9.bindPopup(popup_cee769c0344aea7f14863839596deaa6)
+        ;
+
+        
+    
+    
+            var circle_marker_3bd23bba44f7c05c702db348035e3290 = L.circleMarker(
+                [25.051000000000002, 121.596],
+                {"bubblingMouseEvents": true, "color": "#fd7234ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd7234ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.633690842904985, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_d485037496dc5302fdf2380a0edb3180 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_d81d4bb1c14afd7d054fe86b894b6a81 = $(`<div id="html_d81d4bb1c14afd7d054fe86b894b6a81" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>11南港區<br>         <b>風險值：</b>0.553<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_d485037496dc5302fdf2380a0edb3180.setContent(html_d81d4bb1c14afd7d054fe86b894b6a81);
+            
+        
+
+        circle_marker_3bd23bba44f7c05c702db348035e3290.bindPopup(popup_d485037496dc5302fdf2380a0edb3180)
+        ;
+
+        
+    
+    
+            var circle_marker_3da21a46d261ae371f6502c3c000211f = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#fd7435ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd7435ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.600000000000001, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_862ac0695ca20347fe8a7e882d34ef22 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_93358dd79ac32b424036588ec664c9ed = $(`<div id="html_93358dd79ac32b424036588ec664c9ed" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.550<br>         <b>時段：</b>13 時     </div>     </div>`)[0];
+                popup_862ac0695ca20347fe8a7e882d34ef22.setContent(html_93358dd79ac32b424036588ec664c9ed);
+            
+        
+
+        circle_marker_3da21a46d261ae371f6502c3c000211f.bindPopup(popup_862ac0695ca20347fe8a7e882d34ef22)
+        ;
+
+        
+    
+    
+            var circle_marker_6022bb3afda5cf3f297b6da0a942bf36 = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fd7535ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd7535ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.580879855662104, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_68b4dfa71ab345bd2275398020d2921c = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_2b32d1797a2e80dc5223293a2c51d1d7 = $(`<div id="html_2b32d1797a2e80dc5223293a2c51d1d7" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>10文山區<br>         <b>風險值：</b>0.548<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_68b4dfa71ab345bd2275398020d2921c.setContent(html_2b32d1797a2e80dc5223293a2c51d1d7);
+            
+        
+
+        circle_marker_6022bb3afda5cf3f297b6da0a942bf36.bindPopup(popup_68b4dfa71ab345bd2275398020d2921c)
+        ;
+
+        
+    
+    
+            var circle_marker_380ab9da1a941cb9f070f1a271a971bd = L.circleMarker(
+                [25.039, 121.518],
+                {"bubblingMouseEvents": true, "color": "#fd7735ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd7735ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.51988896466833, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_18b9c600625cc330694dcecb59324321 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_207bc88d71eb7479afb9b08c68c72854 = $(`<div id="html_207bc88d71eb7479afb9b08c68c72854" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>05中正區<br>         <b>風險值：</b>0.543<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_18b9c600625cc330694dcecb59324321.setContent(html_207bc88d71eb7479afb9b08c68c72854);
+            
+        
+
+        circle_marker_380ab9da1a941cb9f070f1a271a971bd.bindPopup(popup_18b9c600625cc330694dcecb59324321)
+        ;
+
+        
+    
+    
+            var circle_marker_6be726314ee16b5d2a898de234979fc4 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#fd863aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd863aff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.17142857142857, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_636ae6fe93ab1649995a39b58368837a = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0246aa2124496d98e5edc93fa60b9736 = $(`<div id="html_0246aa2124496d98e5edc93fa60b9736" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.514<br>         <b>時段：</b>21 時     </div>     </div>`)[0];
+                popup_636ae6fe93ab1649995a39b58368837a.setContent(html_0246aa2124496d98e5edc93fa60b9736);
+            
+        
+
+        circle_marker_6be726314ee16b5d2a898de234979fc4.bindPopup(popup_636ae6fe93ab1649995a39b58368837a)
+        ;
+
+        
+    
+    
+            var circle_marker_4a90834f91d10774468b3e06ea824db0 = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#fd863aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd863aff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.17142857142857, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_fb6a3b3a098c07417f226e7756f20cb0 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_27512320cd9725b92aef19359ebf0497 = $(`<div id="html_27512320cd9725b92aef19359ebf0497" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.514<br>         <b>時段：</b>7 時     </div>     </div>`)[0];
+                popup_fb6a3b3a098c07417f226e7756f20cb0.setContent(html_27512320cd9725b92aef19359ebf0497);
+            
+        
+
+        circle_marker_4a90834f91d10774468b3e06ea824db0.bindPopup(popup_fb6a3b3a098c07417f226e7756f20cb0)
+        ;
+
+        
+    
+    
+            var circle_marker_d3ff64cc923709281991f100fb0a946f = L.circleMarker(
+                [25.045, 121.583],
+                {"bubblingMouseEvents": true, "color": "#fd883aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd883aff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.123406931912292, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_82b08f56695f1dbdcd1baf235b63efce = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_a2f887efc87e2ec88209b1c01a44432e = $(`<div id="html_a2f887efc87e2ec88209b1c01a44432e" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>11南港區<br>         <b>風險值：</b>0.510<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_82b08f56695f1dbdcd1baf235b63efce.setContent(html_a2f887efc87e2ec88209b1c01a44432e);
+            
+        
+
+        circle_marker_d3ff64cc923709281991f100fb0a946f.bindPopup(popup_82b08f56695f1dbdcd1baf235b63efce)
+        ;
+
+        
+    
+    
+            var circle_marker_3b08cf2caf9d20346d4bcb120c839bdf = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#fd883aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fd883aff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.11320754716981, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_6479424415c8d335b3089db6a469da1d = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_12a259601afe951a45afa7674a4a04e7 = $(`<div id="html_12a259601afe951a45afa7674a4a04e7" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.509<br>         <b>時段：</b>15 時     </div>     </div>`)[0];
+                popup_6479424415c8d335b3089db6a469da1d.setContent(html_12a259601afe951a45afa7674a4a04e7);
+            
+        
+
+        circle_marker_3b08cf2caf9d20346d4bcb120c839bdf.bindPopup(popup_6479424415c8d335b3089db6a469da1d)
+        ;
+
+        
+    
+    
+            var circle_marker_91775101d715aa4570d1e37be177e8f3 = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#fe8e3cff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe8e3cff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.977358490566036, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_d9f0743eb0ce32a1604e772c6af8b7d3 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_1fb102e2bdb5a13be6208712d3e5720b = $(`<div id="html_1fb102e2bdb5a13be6208712d3e5720b" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.498<br>         <b>時段：</b>19 時     </div>     </div>`)[0];
+                popup_d9f0743eb0ce32a1604e772c6af8b7d3.setContent(html_1fb102e2bdb5a13be6208712d3e5720b);
+            
+        
+
+        circle_marker_91775101d715aa4570d1e37be177e8f3.bindPopup(popup_d9f0743eb0ce32a1604e772c6af8b7d3)
+        ;
+
+        
+    
+    
+            var circle_marker_f49f7bb7cb3995117e8be68e22747f4c = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#fe913dff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe913dff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.841509433962264, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_4d181c5374b0a2149542f8e703c882e0 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_6a550a2de504f716303691b5a6a4b28f = $(`<div id="html_6a550a2de504f716303691b5a6a4b28f" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.487<br>         <b>時段：</b>14 時     </div>     </div>`)[0];
+                popup_4d181c5374b0a2149542f8e703c882e0.setContent(html_6a550a2de504f716303691b5a6a4b28f);
+            
+        
+
+        circle_marker_f49f7bb7cb3995117e8be68e22747f4c.bindPopup(popup_4d181c5374b0a2149542f8e703c882e0)
+        ;
+
+        
+    
+    
+            var circle_marker_d0322fd4f7b2cf535ccac18b1e1318b0 = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#fe933eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe933eff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.773584905660377, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_4515042a232674b8cc41cedda34f3f1b = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_5fee0c6d74f61def4b40dd751f9d6de7 = $(`<div id="html_5fee0c6d74f61def4b40dd751f9d6de7" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.481<br>         <b>時段：</b>9 時     </div>     </div>`)[0];
+                popup_4515042a232674b8cc41cedda34f3f1b.setContent(html_5fee0c6d74f61def4b40dd751f9d6de7);
+            
+        
+
+        circle_marker_d0322fd4f7b2cf535ccac18b1e1318b0.bindPopup(popup_4515042a232674b8cc41cedda34f3f1b)
+        ;
+
+        
+    
+    
+            var circle_marker_bcdd0dc8e81d4b5ee8f72604a854e580 = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#fe943fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe943fff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.705660377358491, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_85c8a646aa31380f60298be7b8406e9b = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_384da1f2caf159aba9b44381738c1d7a = $(`<div id="html_384da1f2caf159aba9b44381738c1d7a" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.475<br>         <b>時段：</b>12 時     </div>     </div>`)[0];
+                popup_85c8a646aa31380f60298be7b8406e9b.setContent(html_384da1f2caf159aba9b44381738c1d7a);
+            
+        
+
+        circle_marker_bcdd0dc8e81d4b5ee8f72604a854e580.bindPopup(popup_85c8a646aa31380f60298be7b8406e9b)
+        ;
+
+        
+    
+    
+            var circle_marker_4a2a7a1a4620716f407a90b032def1e3 = L.circleMarker(
+                [25.063, 121.518],
+                {"bubblingMouseEvents": true, "color": "#fe953fff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe953fff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.660377358490566, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_5086e6a027c6274fdc8560ed8777d47c = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_8da4049a6a567198fe74de44c06704c4 = $(`<div id="html_8da4049a6a567198fe74de44c06704c4" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.472<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_5086e6a027c6274fdc8560ed8777d47c.setContent(html_8da4049a6a567198fe74de44c06704c4);
+            
+        
+
+        circle_marker_4a2a7a1a4620716f407a90b032def1e3.bindPopup(popup_5086e6a027c6274fdc8560ed8777d47c)
+        ;
+
+        
+    
+    
+            var circle_marker_6eb1aa049bdaf4ceee2618f9b93596fa = L.circleMarker(
+                [25.051000000000002, 121.595],
+                {"bubblingMouseEvents": true, "color": "#fe9740ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9740ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.613123020919602, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_d2bd45ec50758e841026c196df57fa36 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_3166f9c744d6ad31b418f3521cefdfa5 = $(`<div id="html_3166f9c744d6ad31b418f3521cefdfa5" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>11南港區<br>         <b>風險值：</b>0.468<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_d2bd45ec50758e841026c196df57fa36.setContent(html_3166f9c744d6ad31b418f3521cefdfa5);
+            
+        
+
+        circle_marker_6eb1aa049bdaf4ceee2618f9b93596fa.bindPopup(popup_d2bd45ec50758e841026c196df57fa36)
+        ;
+
+        
+    
+    
+            var circle_marker_80346018091c2a5d68308cc9e700b804 = L.circleMarker(
+                [25.039, 121.49600000000001],
+                {"bubblingMouseEvents": true, "color": "#fe9740ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9740ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.58794246967655, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_7f6d900edc725f0a3bbcfc17c0aed938 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_bfd3e3699e740c1384a8c2a5e7b071c1 = $(`<div id="html_bfd3e3699e740c1384a8c2a5e7b071c1" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>02萬華區<br>         <b>風險值：</b>0.466<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_7f6d900edc725f0a3bbcfc17c0aed938.setContent(html_bfd3e3699e740c1384a8c2a5e7b071c1);
+            
+        
+
+        circle_marker_80346018091c2a5d68308cc9e700b804.bindPopup(popup_7f6d900edc725f0a3bbcfc17c0aed938)
+        ;
+
+        
+    
+    
+            var circle_marker_5323660bd40ddf8943e6afe714e3028d = L.circleMarker(
+                [25.063, 121.511],
+                {"bubblingMouseEvents": true, "color": "#fe9840ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9840ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.571428571428573, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_df8c3acb94b178fcdb2279da30a034ac = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_11abdc9f4f3a3ae52a842fc1c674fedf = $(`<div id="html_11abdc9f4f3a3ae52a842fc1c674fedf" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.464<br>         <b>時段：</b>22 時     </div>     </div>`)[0];
+                popup_df8c3acb94b178fcdb2279da30a034ac.setContent(html_11abdc9f4f3a3ae52a842fc1c674fedf);
+            
+        
+
+        circle_marker_5323660bd40ddf8943e6afe714e3028d.bindPopup(popup_df8c3acb94b178fcdb2279da30a034ac)
+        ;
+
+        
+    
+    
+            var circle_marker_821bc1fa8c37e60cdb23c00a3614f732 = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fe9b42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9b42ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.444612830224044, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_b9cb0710a6e39ce371610a161a94eb8e = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_1d426c2828b85237eda9bc6b99312282 = $(`<div id="html_1d426c2828b85237eda9bc6b99312282" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>10文山區<br>         <b>風險值：</b>0.454<br>         <b>時段：</b>7 時     </div>     </div>`)[0];
+                popup_b9cb0710a6e39ce371610a161a94eb8e.setContent(html_1d426c2828b85237eda9bc6b99312282);
+            
+        
+
+        circle_marker_821bc1fa8c37e60cdb23c00a3614f732.bindPopup(popup_b9cb0710a6e39ce371610a161a94eb8e)
+        ;
+
+        
+    
+    
+            var circle_marker_70aa2216efb453d20ea42bc55ef653c1 = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#fe9b42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9b42ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.433962264150942, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_b5e6a708259d3dbeedef9913985328b0 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_f25a509ecb47f90972a0269e4871be25 = $(`<div id="html_f25a509ecb47f90972a0269e4871be25" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.453<br>         <b>時段：</b>10 時     </div>     </div>`)[0];
+                popup_b5e6a708259d3dbeedef9913985328b0.setContent(html_f25a509ecb47f90972a0269e4871be25);
+            
+        
+
+        circle_marker_70aa2216efb453d20ea42bc55ef653c1.bindPopup(popup_b5e6a708259d3dbeedef9913985328b0)
+        ;
+
+        
+    
+    
+            var circle_marker_871359a1fa0c0748a0827857c3c6afda = L.circleMarker(
+                [25.063, 121.516],
+                {"bubblingMouseEvents": true, "color": "#fe9b42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9b42ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.433962264150942, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_8eaf1e95e05def0937de40cf7b541d60 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_08e52b9273b90dc5673dda44302d68ae = $(`<div id="html_08e52b9273b90dc5673dda44302d68ae" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.453<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_8eaf1e95e05def0937de40cf7b541d60.setContent(html_08e52b9273b90dc5673dda44302d68ae);
+            
+        
+
+        circle_marker_871359a1fa0c0748a0827857c3c6afda.bindPopup(popup_8eaf1e95e05def0937de40cf7b541d60)
+        ;
+
+        
+    
+    
+            var circle_marker_d34fae68c8a16e52ffe2228baff052c9 = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fe9c42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9c42ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.39726837083079, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_4c5a29a7fa8e8acf290ac0135f8692bb = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_101e557d89fe2e279a0cf8ac5a652549 = $(`<div id="html_101e557d89fe2e279a0cf8ac5a652549" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>10文山區<br>         <b>風險值：</b>0.450<br>         <b>時段：</b>17 時     </div>     </div>`)[0];
+                popup_4c5a29a7fa8e8acf290ac0135f8692bb.setContent(html_101e557d89fe2e279a0cf8ac5a652549);
+            
+        
+
+        circle_marker_d34fae68c8a16e52ffe2228baff052c9.bindPopup(popup_4c5a29a7fa8e8acf290ac0135f8692bb)
+        ;
+
+        
+    
+    
+            var circle_marker_eb7b1bbbb3c2f5a06bc28c0224a8ca32 = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fe9c42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9c42ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.39726837083079, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_2144a9835fa0611d25d1e0541e177a5b = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_f8c81579d973acc478a382fd599ca399 = $(`<div id="html_f8c81579d973acc478a382fd599ca399" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>10文山區<br>         <b>風險值：</b>0.450<br>         <b>時段：</b>10 時     </div>     </div>`)[0];
+                popup_2144a9835fa0611d25d1e0541e177a5b.setContent(html_f8c81579d973acc478a382fd599ca399);
+            
+        
+
+        circle_marker_eb7b1bbbb3c2f5a06bc28c0224a8ca32.bindPopup(popup_2144a9835fa0611d25d1e0541e177a5b)
+        ;
+
+        
+    
+    
+            var circle_marker_733f37adacbdfc666e88e89ddc47a91d = L.circleMarker(
+                [24.988, 121.552],
+                {"bubblingMouseEvents": true, "color": "#fe9c42ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9c42ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.39726837083079, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_d4db94e544dd1ed8c0df257c3c0cb99d = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_5dde90e2092d486575466983c4652b71 = $(`<div id="html_5dde90e2092d486575466983c4652b71" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>10文山區<br>         <b>風險值：</b>0.450<br>         <b>時段：</b>18 時     </div>     </div>`)[0];
+                popup_d4db94e544dd1ed8c0df257c3c0cb99d.setContent(html_5dde90e2092d486575466983c4652b71);
+            
+        
+
+        circle_marker_733f37adacbdfc666e88e89ddc47a91d.bindPopup(popup_d4db94e544dd1ed8c0df257c3c0cb99d)
+        ;
+
+        
+    
+    
+            var circle_marker_d21fb54bf9e6594df4ec54cc89367b6b = L.circleMarker(
+                [25.052, 121.583],
+                {"bubblingMouseEvents": true, "color": "#fe9d43ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9d43ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.365134578194183, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_d9dff982ca8ab908b68293acef5fe510 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_9c6c0ec17b6483242a3e845fc833078e = $(`<div id="html_9c6c0ec17b6483242a3e845fc833078e" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>11南港區<br>         <b>風險值：</b>0.447<br>         <b>時段：</b>18 時     </div>     </div>`)[0];
+                popup_d9dff982ca8ab908b68293acef5fe510.setContent(html_9c6c0ec17b6483242a3e845fc833078e);
+            
+        
+
+        circle_marker_d21fb54bf9e6594df4ec54cc89367b6b.bindPopup(popup_d9dff982ca8ab908b68293acef5fe510)
+        ;
+
+        
+    
+    
+            var circle_marker_8e1a3d842be8cbd863537cd7c0288fdd = L.circleMarker(
+                [25.039, 121.518],
+                {"bubblingMouseEvents": true, "color": "#fe9d43ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9d43ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.34513419625962, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_52859a0781b2944b6f8f0e925356f973 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_a8531f4af5860ec4996392ab1da3ae02 = $(`<div id="html_a8531f4af5860ec4996392ab1da3ae02" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>05中正區<br>         <b>風險值：</b>0.445<br>         <b>時段：</b>18 時     </div>     </div>`)[0];
+                popup_52859a0781b2944b6f8f0e925356f973.setContent(html_a8531f4af5860ec4996392ab1da3ae02);
+            
+        
+
+        circle_marker_8e1a3d842be8cbd863537cd7c0288fdd.bindPopup(popup_52859a0781b2944b6f8f0e925356f973)
+        ;
+
+        
+    
+    
+            var circle_marker_4168e3d927b7a2a5851b8e8d110738d2 = L.circleMarker(
+                [25.052, 121.583],
+                {"bubblingMouseEvents": true, "color": "#fe9f43ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9f43ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.293599450484926, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_465a071bccbb3482931f0b54dd96e5f4 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_ae262494bde86cc4ded15ffd6d2ce24e = $(`<div id="html_ae262494bde86cc4ded15ffd6d2ce24e" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>11南港區<br>         <b>風險值：</b>0.441<br>         <b>時段：</b>17 時     </div>     </div>`)[0];
+                popup_465a071bccbb3482931f0b54dd96e5f4.setContent(html_ae262494bde86cc4ded15ffd6d2ce24e);
+            
+        
+
+        circle_marker_4168e3d927b7a2a5851b8e8d110738d2.bindPopup(popup_465a071bccbb3482931f0b54dd96e5f4)
+        ;
+
+        
+    
+    
+            var circle_marker_c3affe1d99aabfedb152d0a0e887b85c = L.circleMarker(
+                [25.028000000000002, 121.495],
+                {"bubblingMouseEvents": true, "color": "#fea044ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea044ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.249279289696151, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_d18de239563d216609b96ad7cade66b8 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_3f3165ae0b8d78381bc1501f8442e106 = $(`<div id="html_3f3165ae0b8d78381bc1501f8442e106" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>02萬華區<br>         <b>風險值：</b>0.437<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_d18de239563d216609b96ad7cade66b8.setContent(html_3f3165ae0b8d78381bc1501f8442e106);
+            
+        
+
+        circle_marker_c3affe1d99aabfedb152d0a0e887b85c.bindPopup(popup_d18de239563d216609b96ad7cade66b8)
+        ;
+
+        
+    
+    
+            var circle_marker_6393ccdb21f8e21796bc06f303b8a346 = L.circleMarker(
+                [25.051000000000002, 121.508],
+                {"bubblingMouseEvents": true, "color": "#fea044ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea044ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.230188679245284, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_7ffeb657db6c54b8419a6f80f91b404b = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_c8385b5fe24cd1ddd3b43d4cb4eb2e2f = $(`<div id="html_c8385b5fe24cd1ddd3b43d4cb4eb2e2f" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.436<br>         <b>時段：</b>13 時     </div>     </div>`)[0];
+                popup_7ffeb657db6c54b8419a6f80f91b404b.setContent(html_c8385b5fe24cd1ddd3b43d4cb4eb2e2f);
+            
+        
+
+        circle_marker_6393ccdb21f8e21796bc06f303b8a346.bindPopup(popup_7ffeb657db6c54b8419a6f80f91b404b)
+        ;
+
+        
+    
+    
+            var circle_marker_d0890800063e473469dbe085b3644f6f = L.circleMarker(
+                [25.057000000000002, 121.518],
+                {"bubblingMouseEvents": true, "color": "#fea144ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea144ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.20754716981132, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_02c78ddf4358cc4dcbff9bb2c7496e14 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0de73e337e011daf7df29e3324fe6adb = $(`<div id="html_0de73e337e011daf7df29e3324fe6adb" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.434<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_02c78ddf4358cc4dcbff9bb2c7496e14.setContent(html_0de73e337e011daf7df29e3324fe6adb);
+            
+        
+
+        circle_marker_d0890800063e473469dbe085b3644f6f.bindPopup(popup_02c78ddf4358cc4dcbff9bb2c7496e14)
+        ;
+
+        
+    
+    
+            var circle_marker_4c0a7c0fd3e4fd563ae374e66e1ecaa3 = L.circleMarker(
+                [25.051000000000002, 121.507],
+                {"bubblingMouseEvents": true, "color": "#fea144ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea144ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.20754716981132, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_0f4a0825a0ffa70047c7ace004690c3a = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0cfb5d8c449a73001b561a64c2fd4f4a = $(`<div id="html_0cfb5d8c449a73001b561a64c2fd4f4a" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.434<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_0f4a0825a0ffa70047c7ace004690c3a.setContent(html_0cfb5d8c449a73001b561a64c2fd4f4a);
+            
+        
+
+        circle_marker_4c0a7c0fd3e4fd563ae374e66e1ecaa3.bindPopup(popup_0f4a0825a0ffa70047c7ace004690c3a)
+        ;
+
+        
+    
+    
+            var circle_marker_ada3a0893aa75571ef37859337d9b125 = L.circleMarker(
+                [25.05, 121.572],
+                {"bubblingMouseEvents": true, "color": "#fea144ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea144ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.201345773810841, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_1d38bc9216e4e610e7e131ddcae1a2d1 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_1477e85c5a46f62a25f6ee764acc7e1e = $(`<div id="html_1477e85c5a46f62a25f6ee764acc7e1e" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>06松山區<br>         <b>風險值：</b>0.433<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_1d38bc9216e4e610e7e131ddcae1a2d1.setContent(html_1477e85c5a46f62a25f6ee764acc7e1e);
+            
+        
+
+        circle_marker_ada3a0893aa75571ef37859337d9b125.bindPopup(popup_1d38bc9216e4e610e7e131ddcae1a2d1)
+        ;
+
+        
+    
+    
+            var circle_marker_fbc91e60c81db6b75012252562abe13c = L.circleMarker(
+                [25.05, 121.59400000000001],
+                {"bubblingMouseEvents": true, "color": "#fea345ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea345ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.102839109926911, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_046c761fd9f274e9918ee7c19e85a173 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_51daf75537ce9669e1f8cb019aab58d0 = $(`<div id="html_51daf75537ce9669e1f8cb019aab58d0" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>11南港區<br>         <b>風險值：</b>0.425<br>         <b>時段：</b>8 時     </div>     </div>`)[0];
+                popup_046c761fd9f274e9918ee7c19e85a173.setContent(html_51daf75537ce9669e1f8cb019aab58d0);
+            
+        
+
+        circle_marker_fbc91e60c81db6b75012252562abe13c.bindPopup(popup_046c761fd9f274e9918ee7c19e85a173)
+        ;
+
+        
+    
+    
+            var circle_marker_e54aa367f2ca9db76721f8c23658292c = L.circleMarker(
+                [25.039, 121.49600000000001],
+                {"bubblingMouseEvents": true, "color": "#fea446ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea446ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.079947699705954, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_229f94dcbfdc62d47c57376f5734127e = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_bbf3933d1b379953661d71686fa42dd4 = $(`<div id="html_bbf3933d1b379953661d71686fa42dd4" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>02萬華區<br>         <b>風險值：</b>0.423<br>         <b>時段：</b>7 時     </div>     </div>`)[0];
+                popup_229f94dcbfdc62d47c57376f5734127e.setContent(html_bbf3933d1b379953661d71686fa42dd4);
+            
+        
+
+        circle_marker_e54aa367f2ca9db76721f8c23658292c.bindPopup(popup_229f94dcbfdc62d47c57376f5734127e)
+        ;
+
+        
+    
+    
+            var circle_marker_eb13aa18b7495ce6ca8f1d27989bbed0 = L.circleMarker(
+                [25.063, 121.518],
+                {"bubblingMouseEvents": true, "color": "#fea546ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea546ff", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.013477088948786, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6fdea414e5b709caf759ae9c15bd7a17);
+        
+    
+        var popup_31aa52461d382125db6706513889b5c9 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_a249314ac56c9d6218ceba5693022130 = $(`<div id="html_a249314ac56c9d6218ceba5693022130" style="width: 100.0%; height: 100.0%;">     <div style="width:240px; font-size:13px; line-height:1.5;">         <b>行政區：</b>01大同區<br>         <b>風險值：</b>0.418<br>         <b>時段：</b>17 時     </div>     </div>`)[0];
+                popup_31aa52461d382125db6706513889b5c9.setContent(html_a249314ac56c9d6218ceba5693022130);
+            
+        
+
+        circle_marker_eb13aa18b7495ce6ca8f1d27989bbed0.bindPopup(popup_31aa52461d382125db6706513889b5c9)
+        ;
+
+        
+    
+    
+            var layer_control_062696b2eeaef836889940a6f5fb725c_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_947ae843be6ea56c9d2ba5a843eb0773,
+                },
+                overlays :  {
+                    "01\u5927\u540c\u5340\uff08\u524d5\uff09" : feature_group_415a1d2ef79437b117a01fe6ea9393ce,
+                    "02\u842c\u83ef\u5340\uff08\u524d5\uff09" : feature_group_21e9326552994da1c5da4c08d328d3a7,
+                    "03\u4e2d\u5c71\u5340\uff08\u524d5\uff09" : feature_group_56230e7f40cee967ea7af1a0c4b94f02,
+                    "04\u5927\u5b89\u5340\uff08\u524d5\uff09" : feature_group_663e39c37202c4e9b7aaa6461852b6cf,
+                    "05\u4e2d\u6b63\u5340\uff08\u524d5\uff09" : feature_group_7e7b990e126acfca99db8e26ade3f31e,
+                    "06\u677e\u5c71\u5340\uff08\u524d5\uff09" : feature_group_4ac1759a72aea083dc5f5ba035a7bf9a,
+                    "07\u4fe1\u7fa9\u5340\uff08\u524d5\uff09" : feature_group_53091a767faf0d9e4bb31eca9e2a8d02,
+                    "08\u58eb\u6797\u5340\uff08\u524d5\uff09" : feature_group_f2df4489746f0f328e0e8767b523ca16,
+                    "09\u5317\u6295\u5340\uff08\u524d5\uff09" : feature_group_06c23c45179bb2660dda265614bdf620,
+                    "10\u6587\u5c71\u5340\uff08\u524d5\uff09" : feature_group_e6ef5c1c6746df40e2e12fafe91b8510,
+                    "11\u5357\u6e2f\u5340\uff08\u524d5\uff09" : feature_group_ad61933380fc2b39104fb3b3e44c54a7,
+                    "12\u5167\u6e56\u5340\uff08\u524d5\uff09" : feature_group_39945535600a26dfc03f40ad471ccd83,
+                    "\u5168\u5e02 Top50" : feature_group_6fdea414e5b709caf759ae9c15bd7a17,
+                },
+            };
+            let layer_control_062696b2eeaef836889940a6f5fb725c = L.control.layers(
+                layer_control_062696b2eeaef836889940a6f5fb725c_layers.base_layers,
+                layer_control_062696b2eeaef836889940a6f5fb725c_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_e51b878286a70588d8ffc618bc21968a);
+
+        
+</script>
+</html>
